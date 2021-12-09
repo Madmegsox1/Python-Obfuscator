@@ -18,7 +18,7 @@ import java.io.File;
  *  </h2>
  *  <p>
  *      To run the this function in command line you need <b>java</b> installed
- *      then you will need to run the command {@code java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'.
+ *      then you will need to run the command {@code java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'}.
  *  </p>
  *
  */
