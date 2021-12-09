@@ -3,10 +3,10 @@ package org.madmeg.impl;
 import org.madmeg.api.Color;
 import org.madmeg.api.logger.Logger;
 import org.madmeg.api.obfuscator.Loader;
+import org.madmeg.impl.config.Config;
 import org.madmeg.impl.config.ConfigLoader;
 
 import java.io.File;
-import java.util.Scanner;
 
 /**
  * @author Madmegsox1
@@ -14,11 +14,11 @@ import java.util.Scanner;
  * @version 1.0.0
  *
  *  <h2>
- *      Main Function ran in command line:
+ *      The main Function is ran by the command line.
  *  </h2>
  *  <p>
  *      To run the this function in command line you need <b>java</b> installed
- *      then you will need to run the command {@code java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'}
+ *      then you will need to run the command {@code java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'.
  *  </p>
  *
  */
@@ -37,6 +37,7 @@ public final class Core {
 
     public static Logger LOGGER;
     public static ConfigLoader CONFIG_LOADER;
+    public static Config CONFIG;
     public static Loader LOADER;
 
     public static void main(final String[] args){
@@ -50,13 +51,10 @@ public final class Core {
         LOGGER = new Logger("MAIN");
         LOGGER.printSuccess("Loading config");
         CONFIG_LOADER = new ConfigLoader(new File(args[0]));
+        CONFIG = CONFIG_LOADER.config;
         LOGGER.printSuccess("Loaded config");
-
         LOGGER.printCommand("Input the path to the .py file you would like to Obfuscate: ");
         LOADER = new Loader(new File(LOGGER.readLine()));
-
-
-
     }
 
 }

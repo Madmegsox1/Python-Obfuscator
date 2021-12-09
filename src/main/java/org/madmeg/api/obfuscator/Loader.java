@@ -4,6 +4,9 @@ import org.madmeg.api.FileLoader;
 import org.madmeg.impl.Core;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * @author Madmegsox1
@@ -12,6 +15,8 @@ import java.io.File;
 
 public final class Loader implements FileLoader {
 
+    public static SplitFile FILE;
+
     public Loader(File file){
         if(!file.exists()){
             Core.LOGGER.printError("The file " + file.getName() + " doesnt exist");
@@ -19,6 +24,7 @@ public final class Loader implements FileLoader {
         }
         Core.LOGGER.printSuccess("Fount file");
         load(file);
+        Core.LOGGER.printSuccess("Loaded file");
     }
 
     /**
@@ -26,7 +32,21 @@ public final class Loader implements FileLoader {
      */
     @Override
     public void load(File file) {
-
+        try {
+            ArrayList<String> lines = new ArrayList<>();
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()){
+                String line = sc.nextLine();
+                if(line.startsWith("\n")){
+                    line = line.replace("\n", "");
+                }
+                lines.add(line);
+            }
+            FILE = new SplitFile(lines);
+            lines.clear();
+        }catch (final FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     /**
