@@ -60,14 +60,6 @@ public final class Core {
         for(String s : Loader.FILE.lines){
             //LOGGER.print(s);
         }
-
-        LOGGER.print(AddGarbage.genRandomVar());
-        LOGGER.print(AddGarbage.genRandomVar());
-        LOGGER.print(AddGarbage.genRandomVar());
-        LOGGER.print(AddGarbage.genRandomVar());
-        LOGGER.print(AddGarbage.genRandomVar());
-        LOGGER.print(AddGarbage.genRandomVar());
-
     }
 
 }
