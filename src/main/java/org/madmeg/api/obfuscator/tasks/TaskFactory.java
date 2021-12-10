@@ -1,7 +1,6 @@
 package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
-import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
 import org.madmeg.impl.Core;
 

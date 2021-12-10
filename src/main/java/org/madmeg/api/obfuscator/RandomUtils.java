@@ -4,7 +4,6 @@ public final class RandomUtils {
 
     public static String genRandomString(int size){
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
 
         StringBuilder sb = new StringBuilder(size);
