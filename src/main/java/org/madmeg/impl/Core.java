@@ -3,6 +3,7 @@ package org.madmeg.impl;
 import org.madmeg.api.Color;
 import org.madmeg.api.logger.Logger;
 import org.madmeg.api.obfuscator.Loader;
+import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
 import org.madmeg.impl.config.Config;
 import org.madmeg.impl.config.ConfigLoader;
 
@@ -55,9 +56,18 @@ public final class Core {
         LOGGER.printSuccess("Loaded config");
         LOGGER.printCommand("Input the path to the .py file you would like to Obfuscate: ");
         LOADER = new Loader(new File(LOGGER.readLine()));
+
         for(String s : Loader.FILE.lines){
-            LOGGER.print(s);
+            //LOGGER.print(s);
         }
+
+        LOGGER.print(AddGarbage.genRandomVar());
+        LOGGER.print(AddGarbage.genRandomVar());
+        LOGGER.print(AddGarbage.genRandomVar());
+        LOGGER.print(AddGarbage.genRandomVar());
+        LOGGER.print(AddGarbage.genRandomVar());
+        LOGGER.print(AddGarbage.genRandomVar());
+
     }
 
 }
