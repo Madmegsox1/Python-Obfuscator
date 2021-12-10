@@ -1,6 +1,8 @@
 package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
+import org.madmeg.api.obfuscator.SplitFile;
+import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
 import org.madmeg.impl.Core;
 
 /**
@@ -13,7 +15,6 @@ public final class TaskFactory {
 
     public TaskFactory(){
         taskManager = new TaskManager();
-
     }
 
     private void poolTasks(){
@@ -31,11 +32,13 @@ public final class TaskFactory {
         }
         if(Core.CONFIG.isInsertGarbage()){
             for(int i=0; i < size; i+= 100){
-                // TODO pool garbage task
+                taskManager.queueTask(new AddGarbage(Loader.FILE, i));
             }
         }
         if(Core.CONFIG.isInsertObfStrings()){
-            // TODO pool obf string task
+            for(int i=0; i < size; i+= 100) {
+                // TODO pool obf string task
+            }
         }
 
 

@@ -55,6 +55,9 @@ public final class Core {
         LOGGER.printSuccess("Loaded config");
         LOGGER.printCommand("Input the path to the .py file you would like to Obfuscate: ");
         LOADER = new Loader(new File(LOGGER.readLine()));
+        for(String s : Loader.FILE.lines){
+            LOGGER.print(s);
+        }
     }
 
 }

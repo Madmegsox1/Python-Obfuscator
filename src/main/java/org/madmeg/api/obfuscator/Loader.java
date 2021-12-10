@@ -37,9 +37,7 @@ public final class Loader implements FileLoader {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()){
                 String line = sc.nextLine();
-                if(line.startsWith("\n")){
-                    line = line.replace("\n", "");
-                }
+                if(line.replace("\n", "").equals(""))continue;
                 lines.add(line);
             }
             FILE = new SplitFile(lines);
