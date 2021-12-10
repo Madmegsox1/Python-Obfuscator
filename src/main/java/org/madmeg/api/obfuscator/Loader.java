@@ -22,9 +22,9 @@ public final class Loader implements FileLoader {
             Core.LOGGER.printError("The file " + file.getName() + " doesnt exist");
             System.exit(-1);
         }
-        Core.LOGGER.printSuccess("Fount file");
+        Core.LOGGER.printSuccess("Found the file");
         load(file);
-        Core.LOGGER.printSuccess("Loaded file");
+        Core.LOGGER.printSuccess("Loaded the file");
     }
 
     /**
