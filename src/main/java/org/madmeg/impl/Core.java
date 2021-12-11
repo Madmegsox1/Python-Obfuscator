@@ -36,11 +36,11 @@ public final class Core {
             |__|  |____/   |__|  |__|__| \\___/ |__|__|     \\___/ |_____||__|    \\__,_| \\___|\\____||__|__|  |__|  |____|\\___/ |__|__|   \s
                                                                                                                                        \s""";
 
-    public static Logger LOGGER;
+    public static Logger LOGGER = new Logger("MAIN");;
     public static ConfigLoader CONFIG_LOADER;
     public static Config CONFIG;
     public static Loader LOADER;
-    public static TaskFactory TASK_FACTORY;
+    public static TaskFactory TASK_FACTORY = new TaskFactory();
 
     public static void main(final String[] args){
         if(args.length < 1){
@@ -50,7 +50,6 @@ public final class Core {
 
         System.out.println(Color.RED + TITLE_TEXT + Color.RESET);
 
-        LOGGER = new Logger("MAIN");
         LOGGER.printSuccess("Loading config");
         CONFIG_LOADER = new ConfigLoader(new File(args[0]));
         CONFIG = CONFIG_LOADER.config;
@@ -58,13 +57,13 @@ public final class Core {
         LOGGER.printCommand("Input the path to the .py file you would like to Obfuscate: ");
         LOADER = new Loader(new File(LOGGER.readLine()));
 
-        for(String s : Loader.FILE.lines){
-            //LOGGER.print(s);
-        }
-
-        TASK_FACTORY = new TaskFactory();
+        LOGGER.printSuccess("Pooling Obfuscation tasks");
         TASK_FACTORY.poolTasks();
+        LOGGER.printSuccess("Pooled Obfuscation tasks");
+
+        LOGGER.printSuccess("Executing Obfuscation tasks");
         TASK_FACTORY.executeTasks();
+        LOGGER.printSuccess("Completed all Obfuscation tasks");
     }
 
 }
