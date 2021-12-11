@@ -16,7 +16,11 @@ public final class TaskFactory {
         taskManager = new TaskManager();
     }
 
-    private void poolTasks(){
+    public void executeTasks(){
+        this.taskManager.runTasks();
+    }
+
+    public void poolTasks(){
 
         int size = Loader.FILE.lines.size();
 
@@ -30,7 +34,7 @@ public final class TaskFactory {
             // TODO pool class name change task
         }
         if(Core.CONFIG.isInsertGarbage()){
-            for(int i=0; i < size; i+= 100){
+            for(int i=0; i < size; i+= 50){
                 taskManager.queueTask(new AddGarbage(Loader.FILE, i));
             }
         }

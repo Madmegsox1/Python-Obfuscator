@@ -3,7 +3,7 @@ package org.madmeg.impl;
 import org.madmeg.api.Color;
 import org.madmeg.api.logger.Logger;
 import org.madmeg.api.obfuscator.Loader;
-import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
+import org.madmeg.api.obfuscator.tasks.TaskFactory;
 import org.madmeg.impl.config.Config;
 import org.madmeg.impl.config.ConfigLoader;
 
@@ -40,6 +40,7 @@ public final class Core {
     public static ConfigLoader CONFIG_LOADER;
     public static Config CONFIG;
     public static Loader LOADER;
+    public static TaskFactory TASK_FACTORY;
 
     public static void main(final String[] args){
         if(args.length < 1){
@@ -60,6 +61,10 @@ public final class Core {
         for(String s : Loader.FILE.lines){
             //LOGGER.print(s);
         }
+
+        TASK_FACTORY = new TaskFactory();
+        TASK_FACTORY.poolTasks();
+        TASK_FACTORY.executeTasks();
     }
 
 }
