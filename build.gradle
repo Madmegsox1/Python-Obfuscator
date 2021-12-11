@@ -9,5 +9,13 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.madmeg.impl.Core'
+    }
 }

@@ -10,23 +10,23 @@ package org.madmeg.api;
  */
 
 public final class Color {
-    public static final String RESET = "\u001B[0m";
+    public static final String RESET = "\033[0m";
 
-    public static final String BLACK = "\u001B[30m";
-    public static final String RED = "\u001B[31m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String YELLOW = "\u001B[33m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
-    public static final String CYAN = "\u001B[36m";
-    public static final String WHITE = "\u001B[37m";
+    public static final String BLACK = "\033[30m";
+    public static final String RED = "\033[31m";
+    public static final String GREEN = "\033[32m";
+    public static final String YELLOW = "\033[33m";
+    public static final String BLUE = "\033[34m";
+    public static final String PURPLE = "\033[35m";
+    public static final String CYAN = "\033[36m";
+    public static final String WHITE = "\033[37m";
 
-    public static final String BLACK_BG = "\u001B[40m";
-    public static final String RED_BG = "\u001B[41m";
-    public static final String GREEN_BG = "\u001B[42m";
-    public static final String YELLOW_BG = "\u001B[43m";
-    public static final String BLUE_BG = "\u001B[44m";
-    public static final String PURPLE_BG = "\u001B[45m";
-    public static final String CYAN_BG = "\u001B[46m";
-    public static final String WHITE_BG = "\u001B[47m";
+    public static final String BLACK_BG = "\033[40m";
+    public static final String RED_BG = "\033[41m";
+    public static final String GREEN_BG = "\033[42m";
+    public static final String YELLOW_BG = "\033[43m";
+    public static final String BLUE_BG = "\033[44m";
+    public static final String PURPLE_BG = "\033[45m";
+    public static final String CYAN_BG = "\033[46m";
+    public static final String WHITE_BG = "\033[47m";
 }

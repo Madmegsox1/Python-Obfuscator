@@ -1,7 +1,5 @@
 package org.madmeg.api.obfuscator.tasks;
 
-import org.madmeg.impl.Core;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
