@@ -39,7 +39,8 @@ public final class RenameFunction implements Task {
             final Matcher wMatcher = wPattern.matcher(line);
 
             if(!matcher.find())continue;
-            final  String oldName = tempLine.substring(4).split("\\(")[0].replaceAll(" ", "");
+            final String oldName = tempLine.substring(4).split("\\(")[0].replaceAll(" ", "");
+            if(oldName.equals("__init__"))continue;
             final RenameObject rename = new RenameObject(oldName, RandomUtils.genRandomString(Core.CONFIG.getNameLength()), (wMatcher.find()) ? wMatcher.group() : "");
             renamesLines.add(rename);
         }
