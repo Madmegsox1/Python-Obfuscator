@@ -13,20 +13,24 @@ import java.util.regex.Pattern;
 
 public final class AddGarbage implements Task {
     private List<String> lines;
+    private int startLine;
+    private SplitFile file;
 
     public AddGarbage(SplitFile file, int startLine) {
         if (startLine + 50 > file.lines.size()) return;
         this.lines = file.lines.subList(startLine, startLine + 50);
+        this.startLine = startLine;
+        this.file = file;
     }
 
 
     @Override
     public void completeTask() {
         if (lines == null) return;
+        final Pattern pattern = Pattern.compile("^\s +");
         for (final ListIterator<String> i = lines.listIterator(); i.hasNext();) {
             final String line = i.next();
             String whiteSpace = null;
-            final Pattern pattern = Pattern.compile("^\s +");
             final Matcher matcher = pattern.matcher(line);
             if (matcher.find()) {
                 whiteSpace = matcher.group();
@@ -34,7 +38,13 @@ public final class AddGarbage implements Task {
             i.set(line + "\n\t" + ((whiteSpace != null) ? whiteSpace : "") + genFunction(((whiteSpace != null) ? whiteSpace : "")));
         }
 
+        int x = 0;
+        for(int i = startLine; i < startLine+50;i++){
+            file.lines.set(i, lines.get(x));
+            x++;
+        }
 
+        //file.lines.stream().spliterator().forEachRemaining(System.out::println);
     }
 
     private String genFunction(String ws) {

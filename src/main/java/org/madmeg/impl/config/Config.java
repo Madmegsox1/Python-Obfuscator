@@ -3,6 +3,9 @@ package org.madmeg.impl.config;
 /**
  * @author Madmegsox1
  * @since 09/12/2021
+ *
+ * TODO add new configs for garbage
+ *
  */
 
 public final class Config {

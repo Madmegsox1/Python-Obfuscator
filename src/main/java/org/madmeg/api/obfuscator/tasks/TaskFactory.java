@@ -2,6 +2,7 @@ package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
 import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
+import org.madmeg.api.obfuscator.tasks.elements.RenameFunction;
 import org.madmeg.impl.Core;
 
 /**
@@ -28,7 +29,7 @@ public final class TaskFactory {
             // TODO pool var name change task
         }
         if(Core.CONFIG.isDefNames()){
-            // TODO pool def name change task
+            taskManager.queueTask(new RenameFunction(Loader.FILE));
         }
         if(Core.CONFIG.isClassNames()){
             // TODO pool class name change task
