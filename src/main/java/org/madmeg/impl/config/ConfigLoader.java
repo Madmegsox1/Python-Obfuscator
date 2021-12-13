@@ -32,6 +32,7 @@ public final class ConfigLoader implements FileLoader {
             int i = 1;
             while (sc.hasNextLine()){
                 String line = sc.nextLine();
+                if(line.isBlank())continue;
                 String[] data = line.replace(" ", "").split("=");
                 if(data.length < 2){
                     System.err.println("Incorrect Config at line " + i);
@@ -40,15 +41,16 @@ public final class ConfigLoader implements FileLoader {
                 i++;
 
                 switch (data[0]){
-                    case "varNames" -> config.setVarNames(isTrue(data[1]));
-                    case "defNames" -> config.setDefNames(isTrue(data[1]));
-                    case "classNames" -> config.setClassNames(isTrue(data[1]));
-                    case "nameLength" -> config.setNameLength(Integer.parseInt(data[1]));
-                    case "namePrefix" -> config.setNamePrefix(data[1]);
-                    case "insertGarbage" -> config.setInsertGarbage(isTrue(data[1]));
-                    case "garbageAmount" -> config.setGarbageAmount(Integer.parseInt(data[1]));
-                    case "insertObfStrings" -> config.setInsertObfStrings(isTrue(data[1]));
-                    case "obfStringAmount" -> config.setObfStringAmount(Integer.parseInt(data[1]));
+                    case "rename_vars" -> config.setVarNames(isTrue(data[1]));
+                    case "rename_functions" -> config.setDefNames(isTrue(data[1]));
+                    case "rename_class" -> config.setClassNames(isTrue(data[1]));
+                    case "name_length" -> config.setNameLength(Integer.parseInt(data[1]));
+                    case "name_prefix" -> config.setNamePrefix(data[1]);
+                    case "insert_garbage" -> config.setInsertGarbage(isTrue(data[1]));
+                    case "garbage_amount" -> config.setGarbageAmount(Integer.parseInt(data[1]));
+                    case "insert_obfStrings" -> config.setInsertObfStrings(isTrue(data[1]));
+                    case "obfString_amount" -> config.setObfStringAmount(Integer.parseInt(data[1]));
+                    case "remove_comments" -> config.setRemoveComments(isTrue(data[1]));
                 }
             }
             sc.close();

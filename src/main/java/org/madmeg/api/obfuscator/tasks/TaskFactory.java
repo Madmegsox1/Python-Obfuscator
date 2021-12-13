@@ -2,6 +2,7 @@ package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
 import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
+import org.madmeg.api.obfuscator.tasks.elements.RemoveComments;
 import org.madmeg.api.obfuscator.tasks.elements.RenameClass;
 import org.madmeg.api.obfuscator.tasks.elements.RenameFunction;
 import org.madmeg.impl.Core;
@@ -25,11 +26,16 @@ public final class TaskFactory {
 
     public void executeTasks(){
         this.taskManager.runTasks();
+        Loader.FILE.lines.spliterator().forEachRemaining(System.out::println);
     }
 
     public void poolTasks(){
 
         int size = Loader.FILE.lines.size();
+
+        if(Core.CONFIG.isRemoveComments()){
+            taskManager.queueTask(new RemoveComments(Loader.FILE));
+        }
 
         if(Core.CONFIG.isVarNames()){
             // TODO pool var name change task
@@ -52,8 +58,6 @@ public final class TaskFactory {
         }
 
         // TODO add save obf file
-
-
     }
 
 }

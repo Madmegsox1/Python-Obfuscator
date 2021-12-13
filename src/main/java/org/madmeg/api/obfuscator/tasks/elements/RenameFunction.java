@@ -78,6 +78,6 @@ public final class RenameFunction implements Task {
             lines.remove(lineIndex);
             lines.add(lineIndex, map.get(lineIndex));
         }
-        lines.spliterator().forEachRemaining(System.out::println);
+
     }
 }
