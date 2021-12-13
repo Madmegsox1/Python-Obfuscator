@@ -11,6 +11,7 @@ import org.madmeg.impl.Core;
  * @since 09/12/2021
  *
  * TODO fix add garbage concurrent error
+ * TODO add config to hide code in hex or bin or oct
  *
  */
 
@@ -49,6 +50,7 @@ public final class TaskFactory {
             }
         }
 
+        // TODO add save obf file
 
 
     }
