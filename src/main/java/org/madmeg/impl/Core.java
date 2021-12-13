@@ -10,7 +10,6 @@ import org.madmeg.impl.config.ConfigLoader;
 import java.io.File;
 
 /**
- * @author 0x0001
  * @author Madmegsox1
  * @since 09/12/2021
  * @version 1.0.0
