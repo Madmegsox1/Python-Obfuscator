@@ -37,7 +37,7 @@ public final class Core {
             |__|  |____/   |__|  |__|__| \\___/ |__|__|     \\___/ |_____||__|    \\__,_| \\___|\\____||__|__|  |__|  |____|\\___/ |__|__|   \s
                                                                                                                                        \s""";
 
-    public static Logger LOGGER = new Logger("MAIN");;
+    public static Logger LOGGER = new Logger("MAIN");
     public static ConfigLoader CONFIG_LOADER;
     public static Config CONFIG;
     public static Loader LOADER;
@@ -50,7 +50,6 @@ public final class Core {
         }
 
         System.out.println(Color.RED + TITLE_TEXT + Color.RESET);
-
         LOGGER.printSuccess("Loading config");
         CONFIG_LOADER = new ConfigLoader(new File(args[0]));
         CONFIG = CONFIG_LOADER.config;
@@ -66,5 +65,4 @@ public final class Core {
         TASK_FACTORY.executeTasks();
         LOGGER.printSuccess("Completed all Obfuscation tasks");
     }
-
 }
