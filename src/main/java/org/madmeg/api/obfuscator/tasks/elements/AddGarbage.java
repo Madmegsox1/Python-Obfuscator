@@ -43,8 +43,6 @@ public final class AddGarbage implements Task {
             file.lines.set(i, lines.get(x));
             x++;
         }
-
-        //file.lines.stream().spliterator().forEachRemaining(System.out::println);
     }
 
     private String genFunction(String ws) {

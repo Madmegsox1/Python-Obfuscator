@@ -6,6 +6,8 @@ import org.madmeg.api.obfuscator.tasks.Task;
 import org.madmeg.impl.Core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +26,8 @@ public final class RenameFunction implements Task {
 
     @Override
     public void completeTask() {
-        findFunctions().spliterator().forEachRemaining(System.out::println);
+        //findFunctions().spliterator().forEachRemaining(System.out::println);
+        findRef(findFunctions());
     }
 
 
@@ -45,5 +48,35 @@ public final class RenameFunction implements Task {
             renamesLines.add(rename);
         }
         return renamesLines;
+    }
+
+
+    private void findRef(ArrayList<RenameObject> renameObject){
+        Map<Integer, String> map = new HashMap<>();
+        for(RenameObject name : renameObject){
+            final Pattern pattern = Pattern.compile(name.getOldName()+"[(]");
+
+            int i =0;
+
+            for (String line : lines){
+                final String tempLine = line.replaceAll("\s", "");
+                final Matcher matcher = pattern.matcher(tempLine);
+                if(!matcher.find()){
+                    i++;
+                    continue;
+                }
+                line = line.split("[(]")[0];
+                line = line.replaceAll(name.getOldName(), name.getNewName() + "()");
+                map.put(i, line);
+                i++;
+            }
+
+
+        }
+        for (int lineIndex : map.keySet()){
+            lines.remove(lineIndex);
+            lines.add(lineIndex, map.get(lineIndex));
+        }
+        lines.spliterator().forEachRemaining(System.out::println);
     }
 }
