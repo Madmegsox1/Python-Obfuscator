@@ -2,12 +2,16 @@ package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
 import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
+import org.madmeg.api.obfuscator.tasks.elements.RenameClass;
 import org.madmeg.api.obfuscator.tasks.elements.RenameFunction;
 import org.madmeg.impl.Core;
 
 /**
  * @author Madmegsox1
  * @since 09/12/2021
+ *
+ * TODO fix add garbage concurrent error
+ *
  */
 
 public final class TaskFactory {
@@ -32,11 +36,11 @@ public final class TaskFactory {
             taskManager.queueTask(new RenameFunction(Loader.FILE));
         }
         if(Core.CONFIG.isClassNames()){
-            // TODO pool class name change task
+            taskManager.queueTask(new RenameClass(Loader.FILE));
         }
         if(Core.CONFIG.isInsertGarbage()){
             for(int i=0; i < size; i+= 50){
-                taskManager.queueTask(new AddGarbage(Loader.FILE, i));
+                //taskManager.queueTask(new AddGarbage(Loader.FILE, i));
             }
         }
         if(Core.CONFIG.isInsertObfStrings()){

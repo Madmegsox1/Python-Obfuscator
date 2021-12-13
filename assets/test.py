@@ -4,7 +4,12 @@ import subprocess
 
 
 
+class Test():
+    def __init__(self):
+        print("test")
 
+
+deep = Test()
 
 
 def main():
