@@ -19,7 +19,7 @@ public final class Config {
     private int garbageAmount;
     private boolean insertObfStrings;
     private int obfStringAmount;
-
+    private boolean removeComments;
 
     public Config(){}
 
@@ -93,5 +93,13 @@ public final class Config {
 
     public void setObfStringAmount(int obfStringAmount) {
         this.obfStringAmount = obfStringAmount;
+    }
+
+    public boolean isRemoveComments() {
+        return removeComments;
+    }
+
+    public void setRemoveComments(boolean removeComments) {
+        this.removeComments = removeComments;
     }
 }
