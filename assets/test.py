@@ -89,3 +89,8 @@ def main():
         exit()
 
 main()
+
+def test()
+    print("asd")
+
+deez = test()
