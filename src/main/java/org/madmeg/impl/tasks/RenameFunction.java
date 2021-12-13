@@ -1,8 +1,9 @@
-package org.madmeg.api.obfuscator.tasks.elements;
+package org.madmeg.impl.tasks;
 
 import org.madmeg.api.obfuscator.RandomUtils;
 import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.Task;
+import org.madmeg.api.obfuscator.tasks.elements.RenameObject;
 import org.madmeg.impl.Core;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public final class RenameFunction implements Task {
             if(!matcher.find())continue;
             final String oldName = tempLine.substring(4).split("\\(")[0].replaceAll(" ", "");
             if(oldName.equals("__init__"))continue;
-            final RenameObject rename = new RenameObject(oldName, RandomUtils.genRandomString(Core.CONFIG.getNameLength()), (wMatcher.find()) ? wMatcher.group() : "");
+            final RenameObject rename = new RenameObject(oldName, Core.CONFIG.getNamePrefix() + RandomUtils.genRandomString(Core.CONFIG.getNameLength()), (wMatcher.find()) ? wMatcher.group() : "");
             renamesLines.add(rename);
         }
         return renamesLines;

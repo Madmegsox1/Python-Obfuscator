@@ -1,4 +1,4 @@
-package org.madmeg.api.obfuscator.tasks.elements;
+package org.madmeg.impl.tasks;
 
 import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.Task;

@@ -1,11 +1,11 @@
 package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
-import org.madmeg.api.obfuscator.tasks.elements.AddGarbage;
-import org.madmeg.api.obfuscator.tasks.elements.RemoveComments;
-import org.madmeg.api.obfuscator.tasks.elements.RenameClass;
-import org.madmeg.api.obfuscator.tasks.elements.RenameFunction;
+import org.madmeg.impl.tasks.RemoveComments;
+import org.madmeg.impl.tasks.RenameClass;
+import org.madmeg.impl.tasks.RenameFunction;
 import org.madmeg.impl.Core;
+import org.madmeg.impl.tasks.RenameVars;
 
 /**
  * @author Madmegsox1
@@ -38,7 +38,7 @@ public final class TaskFactory {
         }
 
         if(Core.CONFIG.isVarNames()){
-            // TODO pool var name change task
+            taskManager.queueTask(new RenameVars(Loader.FILE));
         }
         if(Core.CONFIG.isDefNames()){
             taskManager.queueTask(new RenameFunction(Loader.FILE));
