@@ -13,6 +13,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/*
+ there is a few issues with this:
+    1. It will replace names that are strings not vars
+    2. It won't replace vars that are like {conn, addr = s.accept()} or if there is a ',' in the line
+ */
+
+
 public final class RenameVars implements Task {
 
     private SplitFile file;
@@ -46,22 +54,13 @@ public final class RenameVars implements Task {
     private void findRef(Collection<RenameObject> renameObjects){
         final Map<Integer, String> map = new HashMap<>();
         for(RenameObject name : renameObjects){
-            final Pattern patten = Pattern.compile(name.getOldName() + "[=]");
-            final Pattern pattern2 = Pattern.compile(name.getNewName() + "[.]");
-
             int i =0;
-
             for(String line : lines){
-                final String tempLine = line.replaceAll("\s", "").replace(" ", "");
-                final Matcher matcher = patten.matcher(tempLine);
-                final Matcher matcher2 = pattern2.matcher(tempLine);
-                if(!matcher.find() && !matcher2.find()){
+                if(!line.contains(name.getOldName())){
                     i++;
                     continue;
                 }
-
-                System.out.println(line + " " + line.split("[=]").length);
-
+                line = line.replace(name.getOldName(), name.getNewName());
                 map.put(i, line);
                 i++;
             }
