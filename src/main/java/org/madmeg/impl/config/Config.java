@@ -17,6 +17,7 @@ public final class Config {
     private String namePrefix;
     private boolean insertGarbage;
     private int garbageAmount;
+    private int garbageLength;
     private boolean insertObfStrings;
     private int obfStringAmount;
     private boolean removeComments;
@@ -85,6 +86,14 @@ public final class Config {
 
     public void setInsertObfStrings(boolean insertObfStrings) {
         this.insertObfStrings = insertObfStrings;
+    }
+
+    public int getGarbageLength() {
+        return garbageLength;
+    }
+
+    public void setGarbageLength(int garbageLength) {
+        this.garbageLength = garbageLength;
     }
 
     public int getObfStringAmount() {

