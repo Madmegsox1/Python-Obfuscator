@@ -1,11 +1,8 @@
 package org.madmeg.api.obfuscator.tasks;
 
 import org.madmeg.api.obfuscator.Loader;
-import org.madmeg.impl.tasks.RemoveComments;
-import org.madmeg.impl.tasks.RenameClass;
-import org.madmeg.impl.tasks.RenameFunction;
+import org.madmeg.impl.tasks.*;
 import org.madmeg.impl.Core;
-import org.madmeg.impl.tasks.RenameVars;
 
 /**
  * @author Madmegsox1
@@ -47,9 +44,7 @@ public final class TaskFactory {
             taskManager.queueTask(new RenameClass(Loader.FILE));
         }
         if(Core.CONFIG.isInsertGarbage()){
-            for(int i=0; i < size; i+= 50){
-                //taskManager.queueTask(new AddGarbage(Loader.FILE, i));
-            }
+            taskManager.queueTask(new AddGarbage(Loader.FILE));
         }
         if(Core.CONFIG.isInsertObfStrings()){
             for(int i=0; i < size; i+= 100) {

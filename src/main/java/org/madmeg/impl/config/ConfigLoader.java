@@ -48,6 +48,7 @@ public final class ConfigLoader implements FileLoader {
                     case "name_prefix" -> config.setNamePrefix(data[1]);
                     case "insert_garbage" -> config.setInsertGarbage(isTrue(data[1]));
                     case "garbage_amount" -> config.setGarbageAmount(Integer.parseInt(data[1]));
+                    case "garbage_length" -> config.setGarbageLength(Integer.parseInt(data[1]));
                     case "insert_obfStrings" -> config.setInsertObfStrings(isTrue(data[1]));
                     case "obfString_amount" -> config.setObfStringAmount(Integer.parseInt(data[1]));
                     case "remove_comments" -> config.setRemoveComments(isTrue(data[1]));

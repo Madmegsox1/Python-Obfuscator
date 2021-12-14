@@ -5,57 +5,62 @@ import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.Task;
 import org.madmeg.impl.Core;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class AddGarbage implements Task {
-    private List<String> lines;
-    private int startLine;
-    private SplitFile file;
+    private final ArrayList<String> lines;
 
-    public AddGarbage(SplitFile file, int startLine) {
-        if (startLine + 50 > file.lines.size()) return;
-        this.lines = file.lines.subList(startLine, startLine + 50);
-        this.startLine = startLine;
-        this.file = file;
+    public AddGarbage(SplitFile file) {
+        this.lines = file.lines;
     }
 
 
     @Override
     public void completeTask() {
-        if (lines == null) return;
         final Pattern pattern = Pattern.compile("^\s +");
-        for (final ListIterator<String> i = lines.listIterator(); i.hasNext();) {
-            final String line = i.next();
+        Map<Integer, String> map = new HashMap<>();
+        int i = 0;
+        int skips = 0;
+        for(String line : lines){
+            if(skips >= 1){
+                skips++;
+                i++;
+                if(skips == Core.CONFIG.getGarbageAmount() + 1){
+                    skips = 0;
+                }
+                continue;
+            }
+            else skips = 0;
             String whiteSpace = null;
             final Matcher matcher = pattern.matcher(line);
             if (matcher.find()) {
                 whiteSpace = matcher.group();
             }
-            i.set(line + "\n\t" + ((whiteSpace != null) ? whiteSpace : "") + genFunction(((whiteSpace != null) ? whiteSpace : "")));
+            map.put(i, line + "\n\t" + ((whiteSpace != null) ? whiteSpace : "") + genFunction(((whiteSpace != null) ? whiteSpace : "")));
+            i++;
+            skips = 1;
         }
 
-        int x = 0;
-        for(int i = startLine; i < startLine+50;i++){
-            file.lines.set(i, lines.get(x));
-            x++;
+        for(int lineIndex : map.keySet()){
+            lines.remove(lineIndex);
+            lines.add(lineIndex, map.get(lineIndex));
         }
     }
 
     private String genFunction(String ws) {
         StringBuilder argument = new StringBuilder();
 
-        final String functionName = RandomUtils.genRandomString(Core.CONFIG.getNameLength());
+        final String functionName = Core.CONFIG.getNamePrefix() + RandomUtils.genRandomString(Core.CONFIG.getNameLength());
         argument.append("def ").append(functionName).append("():\n");
-        String randomRVal = RandomUtils.genRandomString(Core.CONFIG.getNameLength());
-        for (int i = 0; i < RandomUtils.genRandomInt(10, 50); i++) {
+        String randomRVal =  Core.CONFIG.getNamePrefix()  + RandomUtils.genRandomString(Core.CONFIG.getNameLength());
+        int location = RandomUtils.genRandomInt(1, Core.CONFIG.getGarbageLength() - 1);
+        for (int i = 0; i < Core.CONFIG.getGarbageLength(); i++) {
             argument.append("\t\t");
             argument.append(ws);
 
-            if (i == 7) {
+            if (i == location) {
                 argument.append(randomRVal).append(" = ").append(RandomUtils.genRandomDouble(100, 3000));
                 argument.append("\n");
                 continue;
@@ -76,7 +81,7 @@ public final class AddGarbage implements Task {
     }
 
     private String genRandomVar() {
-        return RandomUtils.genRandomString(Core.CONFIG.getNameLength()) +
+        return Core.CONFIG.getNamePrefix() + RandomUtils.genRandomString(Core.CONFIG.getNameLength()) +
                 " = " +
                 ((RandomUtils.genRandomInt(0, 3) == 1) ? RandomUtils.genRandomInt(10000, 999999999) : '"' + RandomUtils.genRandomString(200) + '"');
     }
@@ -89,11 +94,7 @@ public final class AddGarbage implements Task {
                 arguments.append(", ");
             }
         }
-
-
-        return RandomUtils.genRandomString(Core.CONFIG.getNameLength()) +
-                " = [" + arguments + "]";
-
+        return Core.CONFIG.getNamePrefix() + RandomUtils.genRandomString(Core.CONFIG.getNameLength()) + " = [" + arguments + "]";
     }
 
 }
