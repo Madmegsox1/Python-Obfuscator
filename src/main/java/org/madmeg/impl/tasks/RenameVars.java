@@ -15,18 +15,16 @@ import java.util.regex.Pattern;
 
 
 /*
- there is a few issues with this:
-    1. It will replace names that are strings not vars
+ there are a few issues with this:
+    1. It will replace names that are of strings value not vars
     2. It won't replace vars that are like {conn, addr = s.accept()} or if there is a ',' in the line
  */
 
 
 public final class RenameVars implements Task {
 
-    private SplitFile file;
-    private ArrayList<String> lines;
+    private final ArrayList<String> lines;
     public RenameVars(SplitFile file){
-        this.file = file;
         this.lines = file.lines;
     }
 

@@ -19,10 +19,8 @@ import java.util.regex.Pattern;
  */
 
 public final class RenameFunction implements Task {
-    private SplitFile file;
-    private ArrayList<String> lines;
+    private final ArrayList<String> lines;
     public RenameFunction(SplitFile file){
-        this.file = file;
         this.lines = file.lines;
     }
 

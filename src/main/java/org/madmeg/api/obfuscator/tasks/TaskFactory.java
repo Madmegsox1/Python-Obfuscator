@@ -10,7 +10,6 @@ import org.madmeg.impl.Core;
  */
 
 /*
- * TODO fix add garbage concurrent error.
  * TODO add config to hide code in hex or bin or oct
  */
 
@@ -33,7 +32,6 @@ public final class TaskFactory {
         if(Core.CONFIG.isRemoveComments()){
             taskManager.queueTask(new RemoveComments(Loader.FILE));
         }
-
         if(Core.CONFIG.isVarNames()){
             taskManager.queueTask(new RenameVars(Loader.FILE));
         }
@@ -42,6 +40,9 @@ public final class TaskFactory {
         }
         if(Core.CONFIG.isClassNames()){
             taskManager.queueTask(new RenameClass(Loader.FILE));
+        }
+        if(Core.CONFIG.isEncodeImports()){
+            taskManager.queueTask(new EncodeImports(Loader.FILE));
         }
         if(Core.CONFIG.isInsertGarbage()){
             taskManager.queueTask(new AddGarbage(Loader.FILE));
