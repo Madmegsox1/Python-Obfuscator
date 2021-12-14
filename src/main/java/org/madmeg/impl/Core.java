@@ -19,7 +19,7 @@ import java.io.File;
  *      The main Function is ran by the command line.
  *  </h2>
  *  <p>
- *      To run the this function in command line you need <b>java</b> installed
+ *      To run the this function in command line you need <b>java 15</b> installed
  *      then you will need to run the command {@code java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'}.
  *  </p>
  *
