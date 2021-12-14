@@ -10,10 +10,8 @@ import java.util.Map;
 public final class RemoveComments implements Task {
 
 
-    private SplitFile file;
-    private ArrayList<String> lines;
+    private final ArrayList<String> lines;
     public RemoveComments(SplitFile file){
-        this.file = file;
         this.lines = file.lines;
     }
 

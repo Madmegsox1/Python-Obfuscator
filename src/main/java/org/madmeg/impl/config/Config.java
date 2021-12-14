@@ -22,6 +22,12 @@ public final class Config {
     private int obfStringAmount;
     private boolean removeComments;
 
+
+    private boolean encodeImports;
+    private int encodedListGarbageLength;
+    private String encoderType;
+    private String binarySplitter;
+
     public Config(){}
 
     public boolean isVarNames() {
@@ -110,5 +116,37 @@ public final class Config {
 
     public void setRemoveComments(boolean removeComments) {
         this.removeComments = removeComments;
+    }
+
+    public boolean isEncodeImports() {
+        return encodeImports;
+    }
+
+    public void setEncodeImports(boolean encodeImports) {
+        this.encodeImports = encodeImports;
+    }
+
+    public int getEncodedListGarbageLength() {
+        return encodedListGarbageLength;
+    }
+
+    public void setEncodedListGarbageLength(int encodedListGarbageLength) {
+        this.encodedListGarbageLength = encodedListGarbageLength;
+    }
+
+    public String getEncoderType() {
+        return encoderType;
+    }
+
+    public void setEncoderType(String encoderType) {
+        this.encoderType = encoderType;
+    }
+
+    public String getBinarySplitter() {
+        return binarySplitter;
+    }
+
+    public void setBinarySplitter(String binarySplitter) {
+        this.binarySplitter = binarySplitter;
     }
 }

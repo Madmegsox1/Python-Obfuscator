@@ -32,7 +32,7 @@ public final class ConfigLoader implements FileLoader {
             int i = 1;
             while (sc.hasNextLine()){
                 String line = sc.nextLine();
-                if(line.isBlank())continue;
+                if(line.isBlank() || line.startsWith("#"))continue;
                 String[] data = line.replace(" ", "").split("=");
                 if(data.length < 2){
                     System.err.println("Incorrect Config at line " + i);
@@ -52,6 +52,10 @@ public final class ConfigLoader implements FileLoader {
                     case "insert_obfStrings" -> config.setInsertObfStrings(isTrue(data[1]));
                     case "obfString_amount" -> config.setObfStringAmount(Integer.parseInt(data[1]));
                     case "remove_comments" -> config.setRemoveComments(isTrue(data[1]));
+                    case "encode_imports" -> config.setEncodeImports(isTrue(data[1]));
+                    case "encoded_list_garbage_length" -> config.setEncodedListGarbageLength(Integer.parseInt(data[1]));
+                    case "encoder_type" -> config.setEncoderType(data[1]);
+                    case "binary_splitter" -> config.setBinarySplitter(data[1]);
                 }
             }
             sc.close();
