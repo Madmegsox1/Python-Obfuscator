@@ -33,7 +33,7 @@ public final class RenameFunction implements Task {
     }
 
 
-    private ArrayList<RenameObject> findFunctions(){
+    private Collection<RenameObject> findFunctions(){
         final Pattern pattern = Pattern.compile("^def\s[a-zA-Z0-9]*");
         final Pattern wPattern = Pattern.compile("^\s +");
         ArrayList<RenameObject> renamesLines = new ArrayList<>();

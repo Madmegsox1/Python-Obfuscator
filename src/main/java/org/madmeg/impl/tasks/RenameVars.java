@@ -7,6 +7,7 @@ import org.madmeg.api.obfuscator.tasks.elements.RenameObject;
 import org.madmeg.impl.Core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -26,7 +27,7 @@ public final class RenameVars implements Task {
         findRef(findVars());
     }
 
-    private ArrayList<RenameObject> findVars(){
+    private Collection<RenameObject> findVars(){
         final Pattern pattern = Pattern.compile("[a-zA-Z0-9]* =[^=]");
         final Pattern wPattern = Pattern.compile("^\s +");
         ArrayList<RenameObject> renamedLines = new ArrayList<>();
@@ -42,7 +43,7 @@ public final class RenameVars implements Task {
         return renamedLines;
     }
 
-    private void findRef(ArrayList<RenameObject> renameObjects){
+    private void findRef(Collection<RenameObject> renameObjects){
         final Map<Integer, String> map = new HashMap<>();
         for(RenameObject name : renameObjects){
             final Pattern patten = Pattern.compile(name.getOldName() + "[=]");
