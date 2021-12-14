@@ -46,19 +46,21 @@ public final class RenameVars implements Task {
         final Map<Integer, String> map = new HashMap<>();
         for(RenameObject name : renameObjects){
             final Pattern patten = Pattern.compile(name.getOldName() + "[=]");
+            final Pattern pattern2 = Pattern.compile(name.getNewName() + "[.]");
 
             int i =0;
 
             for(String line : lines){
                 final String tempLine = line.replaceAll("\s", "").replace(" ", "");
                 final Matcher matcher = patten.matcher(tempLine);
-                if(!matcher.find()){
+                final Matcher matcher2 = pattern2.matcher(tempLine);
+                if(!matcher.find() && !matcher2.find()){
                     i++;
                     continue;
                 }
-                String[] oldLine = line.split("[=]");
-                line = oldLine[0];
-                line = line.replaceAll(name.getOldName(), name.getNewName() + "=" + ((oldLine[1].equals("")) ? oldLine[2] : oldLine[1]));
+
+                System.out.println(line + " " + line.split("[=]").length);
+
                 map.put(i, line);
                 i++;
             }
