@@ -27,7 +27,7 @@ public final class RenameClass implements Task {
         findRef(findFunctions());
     }
 
-    private ArrayList<RenameObject> findFunctions(){
+    private Collection<RenameObject> findFunctions(){
         final Pattern pattern = Pattern.compile("^class\s[a-zA-Z0-9]*");
         final Pattern wPattern = Pattern.compile("^\s +");
         ArrayList<RenameObject> renamesLines = new ArrayList<>();
