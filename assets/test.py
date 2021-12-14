@@ -95,7 +95,7 @@ def main():
 
 main()
 
-def test()
+def test():
     print("asd")
 
 deez = test()

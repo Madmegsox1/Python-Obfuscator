@@ -65,8 +65,9 @@ public final class RenameFunction implements Task {
                     i++;
                     continue;
                 }
-                line = line.split("[(]")[0];
-                line = line.replaceAll(name.getOldName(), name.getNewName() + "()");
+                String[] oldLine = line.split("[(]");
+                line = oldLine[0];
+                line = line.replaceAll(name.getOldName(), name.getNewName() + "()" + ((oldLine[1].contains(":")) ?  ":" : ""));
                 map.put(i, line);
                 i++;
             }
