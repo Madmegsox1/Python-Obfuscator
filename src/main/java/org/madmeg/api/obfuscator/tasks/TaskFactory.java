@@ -45,7 +45,7 @@ public final class TaskFactory {
             taskManager.queueTask(new EncodeImports(Loader.FILE));
         }
         if(Core.CONFIG.isInsertGarbage()){
-            taskManager.queueTask(new AddGarbage(Loader.FILE));
+            //taskManager.queueTask(new AddGarbage(Loader.FILE));
         }
         if(Core.CONFIG.isInsertObfStrings()){
             for(int i=0; i < size; i+= 100) {
