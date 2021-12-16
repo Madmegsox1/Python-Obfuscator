@@ -26,7 +26,6 @@ public final class TaskFactory extends FactoryWorker<Task>{
     @Override
     public void poolTasks(){
 
-        int size = Loader.FILE.lines.size();
 
         if(Core.CONFIG.isRemoveComments()){
             this.queueTask(new RemoveComments(Loader.FILE));
