@@ -1,14 +1,12 @@
 package org.madmeg.api;
 
 /**
- * <p>
+ *  <p>
  *      Simple static references to chars that change the color of the command line
- * </p>
+ *  </p>
  * @author Madmegsox1
  * @since 09/12/2021
- *
  */
-
 public final class Color {
     public static final String RESET = "\033[0m";
 

@@ -62,7 +62,7 @@ public final class Core {
         LOGGER.printSuccess("Pooled Obfuscation tasks");
 
         LOGGER.printSuccess("Executing Obfuscation tasks");
-        TASK_FACTORY.executeTasks();
+        TASK_FACTORY.runTasks();
         LOGGER.printSuccess("Completed all Obfuscation tasks");
     }
 }

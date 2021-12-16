@@ -56,6 +56,7 @@ public final class ConfigLoader implements FileLoader {
                     case "encoded_list_garbage_length" -> config.setEncodedListGarbageLength(Integer.parseInt(data[1]));
                     case "encoder_type" -> config.setEncoderType(data[1]);
                     case "binary_splitter" -> config.setBinarySplitter(data[1]);
+                    case "encode_strings" ->  config.setEncodeStrings(isTrue(data[1]));
                 }
             }
             sc.close();
