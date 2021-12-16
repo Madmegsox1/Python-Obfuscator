@@ -16,7 +16,13 @@ public final class AddGarbage implements Task {
         this.lines = file.lines;
     }
 
-
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     Simple way of doing this, it will go through every line until it meets the line it needs to insert garbage,
+     *     it will then generate a random function filled with garbage.
+     * </p>
+     */
     @Override
     public void completeTask() {
         final Pattern pattern = Pattern.compile("^\s +");

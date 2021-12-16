@@ -23,7 +23,14 @@ public final class RenameFunction implements Task {
     public RenameFunction(SplitFile file){
         this.lines = file.lines;
     }
-
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     iterates through each line and looks for {@code ^def\s[a-zA-Z0-9]*} regex the obfuscator then generates
+     *     the new name for the class and maps it the {@link RenameObject} constructor it then renames the function and
+     *     function refs.
+     * </p>
+     */
     @Override
     public void completeTask() {
         //findFunctions().spliterator().forEachRemaining(System.out::println);

@@ -9,10 +9,6 @@ import org.madmeg.impl.Core;
  * @since 09/12/2021
  */
 
-/*
- * TODO add config to hide code in hex or bin or oct
- */
-
 public final class TaskFactory extends FactoryWorker<Task>{
 
     @Override
@@ -25,7 +21,6 @@ public final class TaskFactory extends FactoryWorker<Task>{
 
     @Override
     public void poolTasks(){
-
 
         if(Core.CONFIG.isRemoveComments()){
             this.queueTask(new RemoveComments(Loader.FILE));

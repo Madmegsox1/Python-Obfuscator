@@ -20,6 +20,14 @@ public final class RenameClass implements Task {
         this.lines = file.lines;
     }
 
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     iterates through each line and looks for {@code ^class\s[a-zA-Z0-9]*} regex the obfuscator then generates
+     *     the new name for the class and maps it the {@link RenameObject} constructor it then renames the classes and
+     *     class refs.
+     * </p>
+     */
     @Override
     public void completeTask() {
         findRef(findFunctions());

@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
+ * <p>Loads the config into the constructor {@link Config}</p>
+ *
+ * @see org.madmeg.api.FileLoader
  * @author Madmegsox1
  * @since 09/12/2021
  */
@@ -15,6 +18,9 @@ public final class ConfigLoader implements FileLoader {
 
     public Config config;
 
+    /**
+     * @param file The config file being loaded into the {@link Config} constructor
+     */
     public ConfigLoader(File file){
         load(file);
     }
@@ -65,6 +71,10 @@ public final class ConfigLoader implements FileLoader {
         }
     }
 
+    /**
+     * @param val the sting value
+     * @return true if the string value equals true
+     */
     private boolean isTrue(String val){
         return val.toLowerCase().contains("true") || val.toLowerCase().contains("t") || val.toLowerCase().contains("1");
     }

@@ -10,11 +10,6 @@ import org.madmeg.impl.config.ConfigLoader;
 import java.io.File;
 
 /**
- * @author 0x0001
- * @author Madmegsox1
- * @since 09/12/2021
- * @version 1.0.0
- *
  *  <h2>
  *      The main Function is ran by the command line.
  *  </h2>
@@ -22,6 +17,13 @@ import java.io.File;
  *      To run the this function in command line you need <b>java 15</b> installed
  *      then you will need to run the command {@code java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'}.
  *  </p>
+ *
+ *
+ * @author 0x0001
+ * @author Madmegsox1
+ * @since 09/12/2021
+ * @version 1.0.0
+ *
  *
  */
 
@@ -43,6 +45,9 @@ public final class Core {
     public static Loader LOADER;
     public static TaskFactory TASK_FACTORY = new TaskFactory();
 
+    /**
+     * @param args 1st index should contain path to config file
+     */
     public static void main(final String[] args){
         if(args.length < 1){
             System.err.println("No config file found in arguments!");

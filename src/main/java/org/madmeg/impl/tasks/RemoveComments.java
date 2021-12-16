@@ -15,6 +15,14 @@ public final class RemoveComments implements Task {
         this.lines = file.lines;
     }
 
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     iterates through each line and looks for a <b>#</b> it then splits the line at that point.
+     *     After that it will get index 0 of the list as everything after the <b>#</b> will be commented
+     *     out. Finally it will replace the line with the split one.
+     * </p>
+     */
     @Override
     public void completeTask() {
         Map<Integer, String> newLines = new HashMap<>();

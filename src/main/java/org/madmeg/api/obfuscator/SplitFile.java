@@ -3,6 +3,9 @@ package org.madmeg.api.obfuscator;
 import java.util.ArrayList;
 
 /**
+ * <p>
+ *     A constructor to store each line of the file being obfuscated.
+ * <p/>
  * @author Madmegsox1
  * @since 09/12/2021
  */

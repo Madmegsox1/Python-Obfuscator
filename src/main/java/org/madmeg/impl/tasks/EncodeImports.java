@@ -21,7 +21,14 @@ public final class EncodeImports implements Task {
     public EncodeImports(SplitFile file){
         this.lines = file.lines;
     }
-
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     iterates through each line and looks for a <b>import</b> or <b>from</b> it then encodes into either binary,
+     *     hex or base64. Then a list will be generated and inserted after that the obfuscator will insert
+     *     {@code exec(listName[index].decode())} for every import
+     * </p>
+     */
     @Override
     public void completeTask() {
         final ArrayList<String> toEncode = new ArrayList<>();

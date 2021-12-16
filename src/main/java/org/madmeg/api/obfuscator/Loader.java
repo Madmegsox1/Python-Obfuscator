@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * <p>
+ *     Loads the file being obfuscated
+ * </p>
+ * @see org.madmeg.api.FileLoader
  * @author Madmegsox1
  * @since 09/12/2021
  */
