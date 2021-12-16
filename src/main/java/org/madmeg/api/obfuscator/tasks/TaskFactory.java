@@ -15,6 +15,7 @@ import org.madmeg.impl.Core;
 
 public final class TaskFactory extends FactoryWorker<Task>{
 
+    @Override
     public void runTasks(){
         while (tasks.size() > 0){
             tasks.remove().completeTask();
@@ -22,6 +23,7 @@ public final class TaskFactory extends FactoryWorker<Task>{
         Loader.FILE.lines.spliterator().forEachRemaining(System.out::println);
     }
 
+    @Override
     public void poolTasks(){
 
         int size = Loader.FILE.lines.size();
