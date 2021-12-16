@@ -38,7 +38,7 @@ public final class AddGarbage implements Task {
             if (matcher.find()) {
                 whiteSpace = matcher.group();
             }
-            map.put(i, line + "\n\t" + ((whiteSpace != null) ? whiteSpace : "") + genFunction(((whiteSpace != null) ? whiteSpace : "")));
+            map.put(i, line + "\n" + ((whiteSpace != null) ? whiteSpace : "") + genFunction(((whiteSpace != null) ? whiteSpace : "")));
             i++;
             skips = 1;
         }
@@ -57,7 +57,7 @@ public final class AddGarbage implements Task {
         String randomRVal =  Core.CONFIG.getNamePrefix()  + RandomUtils.genRandomString(Core.CONFIG.getNameLength());
         int location = RandomUtils.genRandomInt(1, Core.CONFIG.getGarbageLength() - 1);
         for (int i = 0; i < Core.CONFIG.getGarbageLength(); i++) {
-            argument.append("\t\t");
+            argument.append("\t");
             argument.append(ws);
 
             if (i == location) {
@@ -75,7 +75,7 @@ public final class AddGarbage implements Task {
             argument.append("\n");
         }
 
-        argument.append("\t\t").append(ws).append("return (").append(randomRVal).append(" / ").append(RandomUtils.genRandomInt(2, 7)).append(") + ").append(RandomUtils.genRandomDouble(0.0, 100.0));
+        argument.append("\t").append(ws).append("return (").append(randomRVal).append(" / ").append(RandomUtils.genRandomInt(2, 7)).append(") + ").append(RandomUtils.genRandomDouble(0.0, 100.0));
 
         return argument.toString();
     }

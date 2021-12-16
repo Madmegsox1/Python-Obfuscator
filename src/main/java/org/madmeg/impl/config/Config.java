@@ -27,6 +27,7 @@ public final class Config {
     private int encodedListGarbageLength;
     private String encoderType;
     private String binarySplitter;
+    private boolean encodeStrings;
 
     public Config(){}
 
@@ -148,5 +149,13 @@ public final class Config {
 
     public void setBinarySplitter(String binarySplitter) {
         this.binarySplitter = binarySplitter;
+    }
+
+    public boolean isEncodeStrings() {
+        return encodeStrings;
+    }
+
+    public void setEncodeStrings(boolean encodeStrings) {
+        this.encodeStrings = encodeStrings;
     }
 }
