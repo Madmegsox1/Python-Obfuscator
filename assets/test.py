@@ -34,7 +34,7 @@ def main():
             port_ = "80"
         threads = input(">Please input the numbrer of threads you want>> ")
 
-        sendData = (target + ":" + port + ":" + threads)
+        sendData = (target + ":" + port_ + ":" + threads)
 
         print("------------------------------")
         print("Ip's Connected: ")

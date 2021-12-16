@@ -41,7 +41,7 @@ public final class EncodeImports implements Task {
 
         for(String unEncoded : toEncode){
             switch (Core.CONFIG.getEncoderType().toLowerCase()){
-                case "hex" -> encoded.add(stringToHex(unEncoded));
+                case "hex" -> encoded.add(stringToHex(unEncoded).replaceFirst("^0*", ""));
                 case "base64" -> encoded.add(stringToBase64(unEncoded));
                 case "bin" -> encoded.add(prettyBinary(stringToBinary(unEncoded), 8, Core.CONFIG.getBinarySplitter()));
             }
@@ -70,8 +70,22 @@ public final class EncodeImports implements Task {
             lines.remove(i);
         }
         lines.remove(0);
+
+        if(Core.CONFIG.getEncoderType().equals("base64")){
+            constructedInjectionString.append("import base64\n"); // TODO hide in a list
+        }
+
         for(int i = 0; i < indexes.size(); i++){
-            constructedInjectionString.append("exec(").append(listName).append("[").append((Core.CONFIG.getEncodedListGarbageLength()-1) - i).append("])\n");
+            int indexL = (Core.CONFIG.getEncodedListGarbageLength()-1) - i;
+            constructedInjectionString.append("exec(");
+            switch (Core.CONFIG.getEncoderType().toLowerCase()){
+                case "hex" -> constructedInjectionString.append("bytes.fromhex(").append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("].replace('', '')).decode('utf-8'))\n");
+                case "base64" -> constructedInjectionString.append("base64.b64decode(").append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("]))\n");
+                case "bin" -> constructedInjectionString.append("''.join(chr(int(").append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("].replace('")
+                        .append(Core.CONFIG.getBinarySplitter()).append("', '')[i*0x0008:i*0x0008+0x0008],0x0002)) for i in range(len(")
+                        .append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("].replace('")
+                        .append(Core.CONFIG.getBinarySplitter()).append("', ''))//0x0008)))\n");
+            }
         }
         lines.add(0, constructedInjectionString.toString());
     }
