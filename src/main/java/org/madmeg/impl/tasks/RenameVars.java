@@ -49,20 +49,18 @@ public final class RenameVars implements Task {
         return renamedLines;
     }
 
-    private void findRef(Collection<RenameObject> renameObjects){
+    private void findRef(Collection<RenameObject> renameObjects) {
         final Map<Integer, String> map = new HashMap<>();
-        for(RenameObject name : renameObjects){
-            int i =0;
-            for(String line : lines){
-                if(!line.contains(name.getOldName())){
-                    i++;
-                    continue;
-                }
+        int i = 0;
+        for (String line : lines) {
+            for (RenameObject name : renameObjects) {
+                if (!line.contains(name.getOldName())) continue;
                 line = line.replace(name.getOldName(), name.getNewName());
                 map.put(i, line);
-                i++;
             }
+            i++;
         }
+
 
         for (int lineIndex : map.keySet()){
             lines.remove(lineIndex);
