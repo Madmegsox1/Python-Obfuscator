@@ -5,6 +5,8 @@ import org.madmeg.impl.Core;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -56,6 +58,19 @@ public final class Loader implements FileLoader {
      */
     @Override
     public void save(String path) {
-
+        try {
+            Core.LOGGER.printSuccess("Saving File");
+            File obfFile = new File(path);
+            obfFile.createNewFile();
+            FileWriter writer = new FileWriter(obfFile);
+            for(String line : FILE.lines){
+                writer.write(line);
+                writer.write("\n");
+            }
+            writer.close();
+            Core.LOGGER.printSuccess("Saved File");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -25,6 +25,9 @@ public final class TaskFactory extends FactoryWorker<Task>{
         if(Core.CONFIG.isRemoveComments()){
             this.queueTask(new RemoveComments(Loader.FILE));
         }
+        if(Core.CONFIG.isEncodeImports()){
+            this.queueTask(new EncodeImports(Loader.FILE));
+        }
         if(Core.CONFIG.isVarNames()){
             this.queueTask(new RenameVars(Loader.FILE));
         }
@@ -34,9 +37,7 @@ public final class TaskFactory extends FactoryWorker<Task>{
         if(Core.CONFIG.isClassNames()){
             this.queueTask(new RenameClass(Loader.FILE));
         }
-        if(Core.CONFIG.isEncodeImports()){
-            this.queueTask(new EncodeImports(Loader.FILE));
-        }
+
         if(Core.CONFIG.isEncodeStrings()){
 
         }

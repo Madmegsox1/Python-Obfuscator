@@ -69,5 +69,6 @@ public final class Core {
         LOGGER.printSuccess("Executing Obfuscation tasks");
         TASK_FACTORY.runTasks();
         LOGGER.printSuccess("Completed all Obfuscation tasks");
+        LOADER.save("Output.py");
     }
 }

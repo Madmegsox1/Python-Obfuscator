@@ -76,7 +76,6 @@ public final class EncodeImports implements Task {
         for(int i : indexes){
             lines.remove(i);
         }
-        lines.remove(0);
 
         if(Core.CONFIG.getEncoderType().equals("base64")){
             constructedInjectionString.append("import base64\n"); // TODO hide in a list
@@ -95,6 +94,21 @@ public final class EncodeImports implements Task {
             }
         }
         lines.add(0, constructedInjectionString.toString());
+
+
+        index = 0;
+        final ArrayList<Integer> toRemove = new ArrayList<>();
+        for(String line : lines){
+            if(!line.startsWith("import") && !line.startsWith("from")){
+                index++;
+                continue;
+            }
+            toRemove.add(index);
+        }
+
+        for (int i : toRemove){ // have to have this for some reason >????
+            lines.remove(i);
+        }
     }
 
     private String stringToHex(String toConvert){
