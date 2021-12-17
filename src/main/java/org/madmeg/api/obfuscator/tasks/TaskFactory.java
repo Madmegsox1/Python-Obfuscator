@@ -16,7 +16,7 @@ public final class TaskFactory extends FactoryWorker<Task>{
         while (tasks.size() > 0){
             tasks.remove().completeTask();
         }
-        Loader.FILE.lines.spliterator().forEachRemaining(System.out::println);
+        //Loader.FILE.lines.spliterator().forEachRemaining(System.out::println);
     }
 
     @Override
