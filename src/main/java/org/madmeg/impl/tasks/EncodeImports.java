@@ -88,9 +88,9 @@ public final class EncodeImports implements Task {
                 case "hex" -> constructedInjectionString.append("bytes.fromhex(").append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("].replace('', '')).decode('utf-8'))\n");
                 case "base64" -> constructedInjectionString.append("base64.b64decode(").append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("]))\n");
                 case "bin" -> constructedInjectionString.append("''.join(chr(int(").append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("].replace('")
-                        .append(Core.CONFIG.getBinarySplitter()).append("', '')[i*0x0008:i*0x0008+0x0008],0x0002)) for i in range(len(")
+                        .append(Core.CONFIG.getBinarySplitter()).append("', '')[i*0x0008:i*0x0008+0x0008],(0x0003 - 0x0001))) for i in range(len(")
                         .append(listName).append("[").append("0x000").append(String.format("%X", indexL)).append("].replace('")
-                        .append(Core.CONFIG.getBinarySplitter()).append("', ''))//0x0008)))\n");
+                        .append(Core.CONFIG.getBinarySplitter()).append("', ''))//(0x0004 + 0x0004))))\n");
             }
         }
         lines.add(0, constructedInjectionString.toString());
