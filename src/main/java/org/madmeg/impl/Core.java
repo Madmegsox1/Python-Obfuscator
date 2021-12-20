@@ -51,10 +51,11 @@ public final class Core {
     public static void main(final String[] args){
         if(args.length < 1){
             System.err.println("No config file found in arguments!");
+            System.err.println("java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE");
             System.exit(-1);
         }
 
-        System.out.println(Color.RED + TITLE_TEXT + Color.RESET);
+        System.out.println(TITLE_TEXT);
         LOGGER.printSuccess("Loading config");
         CONFIG_LOADER = new ConfigLoader(new File(args[0]));
         CONFIG = CONFIG_LOADER.config;

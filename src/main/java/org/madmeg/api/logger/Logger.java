@@ -20,11 +20,11 @@ public final class Logger {
 
 
     public void printError(String text){
-        System.out.println(Color.RED +"["+ prefix +"] " + text + Color.RESET);
+        System.out.println("["+ prefix +"] " + text);
     }
 
     public void printSuccess(String text){
-        System.out.println(Color.GREEN +"["+ prefix +"] " + text + Color.RESET);
+        System.out.println("["+ prefix +"] " + text);
     }
 
 
@@ -33,11 +33,11 @@ public final class Logger {
     }
 
     public void print(String text, Color color){
-        System.out.println(color +"["+ prefix +"] " + text + Color.RESET);
+        System.out.println(color +"["+ prefix +"] " + text);
     }
 
     public void printCommand(String text){
-        System.out.println(Color.CYAN +"["+ prefix +"] " + text + Color.RESET);
+        System.out.println("["+ prefix +"] " + text);
     }
 
     public String readLine(){
