@@ -103,7 +103,7 @@ encode_strings = true
     <h3>Recommendations</h3>
     <p>Due to the method of obfuscation the obfuscator cannot yet tell if a name is a string or a var name so try not to use var names in strings!</p>
     <p>
-        Insert garbage is a bit buggy and can break code due to indenting issues so if you want to use inset garbage make sure to fix any indenting issues if they happen
+        Insert garbage is a bit buggy and can break code due to indenting issues so if you want to use insert garbage make sure to fix any indenting issues if they happen!
     </p>
 </div>
 
