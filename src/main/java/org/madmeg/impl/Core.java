@@ -6,6 +6,7 @@ import org.madmeg.api.obfuscator.Loader;
 import org.madmeg.api.obfuscator.tasks.TaskFactory;
 import org.madmeg.impl.config.Config;
 import org.madmeg.impl.config.ConfigLoader;
+import org.madmeg.impl.gui.Gui;
 
 import java.io.File;
 
@@ -54,7 +55,8 @@ public final class Core {
             System.err.println("java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE");
             System.exit(-1);
         }
-
+        Gui gui = new Gui();
+        gui.render();
         System.out.println(TITLE_TEXT);
         LOGGER.printSuccess("Loading config");
         CONFIG_LOADER = new ConfigLoader(new File(args[0]));
