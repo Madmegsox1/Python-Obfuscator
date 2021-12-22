@@ -50,11 +50,6 @@ public final class Core {
      * @param args 1st index should contain path to config file
      */
     public static void main(final String[] args){
-        if(args.length < 1){
-            System.err.println("No config file found in arguments!");
-            System.err.println("java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE");
-            System.exit(-1);
-        }
         Gui gui = new Gui();
         gui.render();
     }
