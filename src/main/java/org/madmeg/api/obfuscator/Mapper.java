@@ -42,7 +42,9 @@ public abstract class Mapper<T> {
         }
 
         final Field oldNameF = fields[index[0]];
+        oldNameF.setAccessible(true);
         final Field newNameF = fields[index[1]];
+        newNameF.setAccessible(true);
         if(!new File(path).exists()){
             System.err.println("Cannot create map, the path " + path + " is invalid.");
             return;

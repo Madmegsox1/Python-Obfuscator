@@ -55,9 +55,14 @@ public final class Core {
             System.err.println("java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE");
             System.exit(-1);
         }
+        Gui gui = new Gui();
+        gui.render();
+    }
+
+    public void oldLoading(){
         System.out.println(TITLE_TEXT);
         LOGGER.printSuccess("Loading config");
-        CONFIG_LOADER = new ConfigLoader(new File(args[0]));
+        //CONFIG_LOADER = new ConfigLoader(new File(args[0]));
         CONFIG = CONFIG_LOADER.config;
         LOGGER.printSuccess("Loaded config");
         LOGGER.printCommand("Input the path to the .py file you would like to Obfuscate: ");

@@ -1,6 +1,7 @@
 package org.madmeg.api.logger;
 
 import org.madmeg.api.Color;
+import org.madmeg.impl.gui.Gui;
 
 import java.util.Scanner;
 
@@ -21,10 +22,12 @@ public final class Logger {
 
     public void printError(String text){
         System.out.println("["+ prefix +"] " + text);
+        Gui.log("["+ prefix +"] " + text);
     }
 
     public void printSuccess(String text){
         System.out.println("["+ prefix +"] " + text);
+        Gui.log("["+ prefix +"] " + text);
     }
 
 

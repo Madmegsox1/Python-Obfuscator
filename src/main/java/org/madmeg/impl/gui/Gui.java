@@ -1,5 +1,9 @@
 package org.madmeg.impl.gui;
 
+import org.madmeg.api.obfuscator.Loader;
+import org.madmeg.impl.Core;
+import org.madmeg.impl.config.ConfigLoader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -10,13 +14,17 @@ public final class Gui extends JFrame {
         super("Python Obfuscator");
     }
 
+    public File configFile;
     public File file;
+    public JButton startButton;
+    public static JTextArea logBox;
 
     public void render(){
         addElements();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500,300);
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
 
@@ -46,8 +54,12 @@ public final class Gui extends JFrame {
                 int rVal = fileChooser.showOpenDialog(this);
 
                 if(rVal == JFileChooser.APPROVE_OPTION){
-                    this.file = fileChooser.getSelectedFile();
-                    configIndicator.setText("Config File: " + file.getName());
+                    this.configFile = fileChooser.getSelectedFile();
+                    configIndicator.setText("Config File: " + configFile.getName());
+                    Core.LOGGER.printSuccess("Loading config");
+                    Core.CONFIG_LOADER = new ConfigLoader(configFile);
+                    Core.CONFIG = Core.CONFIG_LOADER.config;
+                    Core.LOGGER.printSuccess("Loaded config");
                 }
             }
         });
@@ -64,17 +76,52 @@ public final class Gui extends JFrame {
 
                 if(rVal == JFileChooser.APPROVE_OPTION){
                     this.file = fileChooser.getSelectedFile();
-                    fileIndicator.setText("Config File: " + file.getName());
+                    fileIndicator.setText("File: " + file.getName());
+                    Core.LOADER = new Loader(file);
                 }
             }
         });
 
         filePanel.add(fileSelectButton);
 
+        startButton = new JButton("Obfuscate");
+        startButton.addActionListener(e -> {
+            if(this.file == null || this.configFile == null){
+                Core.LOGGER.printError("Please select a file or config file.");
+                return;
+            }
+            Core.LOGGER.printSuccess("Pooling Obfuscation tasks");
+            Core.TASK_FACTORY.poolTasks();
+            Core.LOGGER.printSuccess("Pooled Obfuscation tasks");
+
+            Core.LOGGER.printSuccess("Executing Obfuscation tasks");
+            Core.TASK_FACTORY.runTasks();
+            Core.LOGGER.printSuccess("Completed all Obfuscation tasks");
+            Core.LOADER.save("Output.py");
+        });
+        filePanel.add(startButton);
+
+
 
         header.add(filePanel);
-
         this.add(header, BorderLayout.NORTH);
+
+        logBox = new JTextArea();
+        logBox.setEditable(false);
+        final JScrollPane scrollPane = new JScrollPane(logBox);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setAutoscrolls(true);
+
+        final JPanel logPanel = new JPanel();
+        logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
+
+        logPanel.add(scrollPane, BorderLayout.CENTER);
+        add(logPanel, BorderLayout.CENTER);
+    }
+
+    public static void log(String message){
+        logBox.setText(logBox.getText() + "\n" + message);
     }
 
 }
