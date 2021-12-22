@@ -6,8 +6,8 @@ package org.madmeg.api.obfuscator.tasks.elements;
  */
 
 public final class RenameObject {
-    private String oldName;
-    private String newName;
+    public String oldName;
+    public String newName;
     private String wSpace;
 
     public RenameObject(String oldName, String newName, String wSpace){

@@ -27,6 +27,7 @@ public final class Config {
     private String encoderType;
     private String binarySplitter;
     private boolean encodeStrings;
+    private String mapPath;
 
     public Config(){}
 
@@ -236,5 +237,13 @@ public final class Config {
 
     public void setEncodeStrings(boolean encodeStrings) {
         this.encodeStrings = encodeStrings;
+    }
+
+    public String getMapPath() {
+        return mapPath;
+    }
+
+    public void setMapPath(String mapPath) {
+        this.mapPath = mapPath;
     }
 }

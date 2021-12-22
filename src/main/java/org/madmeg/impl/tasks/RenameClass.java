@@ -1,11 +1,13 @@
 package org.madmeg.impl.tasks;
 
+import org.madmeg.api.obfuscator.Mapper;
 import org.madmeg.api.obfuscator.RandomUtils;
 import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.Task;
 import org.madmeg.api.obfuscator.tasks.elements.RenameObject;
 import org.madmeg.impl.Core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,10 +15,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class RenameClass implements Task {
+public final class RenameClass extends Mapper<RenameObject> implements Task {
 
     private final ArrayList<String> lines;
     public RenameClass(SplitFile file){
+        super("Classes");
         this.lines = file.lines;
     }
 
@@ -30,7 +33,13 @@ public final class RenameClass implements Task {
      */
     @Override
     public void completeTask() {
-        findRef(findFunctions());
+        addBulkMaps(findFunctions());
+        findRef(maps);
+        try {
+            saveMaps(Core.CONFIG.getMapPath());
+        } catch (IllegalAccessException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private Collection<RenameObject> findFunctions(){

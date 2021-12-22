@@ -55,8 +55,6 @@ public final class Core {
             System.err.println("java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE");
             System.exit(-1);
         }
-        Gui gui = new Gui();
-        gui.render();
         System.out.println(TITLE_TEXT);
         LOGGER.printSuccess("Loading config");
         CONFIG_LOADER = new ConfigLoader(new File(args[0]));

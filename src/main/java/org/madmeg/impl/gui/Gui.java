@@ -27,7 +27,7 @@ public final class Gui extends JFrame {
 
         final JLabel label = new JLabel(new ImageIcon(
                 new ImageIcon(getClass().getClassLoader().getResource("logo.png")).getImage().getScaledInstance(
-                        250, 100, Image.SCALE_DEFAULT
+                        280, 100, Image.SCALE_DEFAULT
                 )
         ));
         header.add(label);
@@ -52,6 +52,25 @@ public final class Gui extends JFrame {
             }
         });
         filePanel.add(configSelectButton);
+
+        final JLabel fileIndicator = new JLabel("File: NONE");
+        filePanel.add(fileIndicator);
+
+        final JButton fileSelectButton = new JButton("Select File");
+        fileSelectButton.addActionListener(e -> {
+            final JFileChooser fileChooser = new JFileChooser();
+            if(e.getSource() == fileSelectButton){
+                int rVal = fileChooser.showOpenDialog(this);
+
+                if(rVal == JFileChooser.APPROVE_OPTION){
+                    this.file = fileChooser.getSelectedFile();
+                    fileIndicator.setText("Config File: " + file.getName());
+                }
+            }
+        });
+
+        filePanel.add(fileSelectButton);
+
 
         header.add(filePanel);
 
