@@ -57,6 +57,7 @@ public final class Gui extends JFrame {
                     this.configFile = fileChooser.getSelectedFile();
                     configIndicator.setText("Config File: " + configFile.getName());
                     Core.LOGGER.printSuccess("Loading config");
+                    Core.PLUGIN_LOADER.onConfig();
                     Core.CONFIG_LOADER = new ConfigLoader(configFile);
                     Core.CONFIG = Core.CONFIG_LOADER.config;
                     Core.LOGGER.printSuccess("Loaded config");
@@ -77,6 +78,7 @@ public final class Gui extends JFrame {
                 if(rVal == JFileChooser.APPROVE_OPTION){
                     this.file = fileChooser.getSelectedFile();
                     fileIndicator.setText("File: " + file.getName());
+                    Core.PLUGIN_LOADER.onLoad();
                     Core.LOADER = new Loader(file);
                 }
             }
@@ -91,10 +93,12 @@ public final class Gui extends JFrame {
                 return;
             }
             Core.LOGGER.printSuccess("Pooling Obfuscation tasks");
+            Core.PLUGIN_LOADER.onPoolTasks();
             Core.TASK_FACTORY.poolTasks();
             Core.LOGGER.printSuccess("Pooled Obfuscation tasks");
 
             Core.LOGGER.printSuccess("Executing Obfuscation tasks");
+            Core.PLUGIN_LOADER.onExecute();
             Core.TASK_FACTORY.runTasks();
             Core.LOGGER.printSuccess("Completed all Obfuscation tasks");
             Core.LOADER.save("Output.py");

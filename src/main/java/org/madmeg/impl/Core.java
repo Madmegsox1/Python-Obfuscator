@@ -4,6 +4,7 @@ import org.madmeg.api.Color;
 import org.madmeg.api.logger.Logger;
 import org.madmeg.api.obfuscator.Loader;
 import org.madmeg.api.obfuscator.tasks.TaskFactory;
+import org.madmeg.api.plugin.PluginLoader;
 import org.madmeg.impl.config.Config;
 import org.madmeg.impl.config.ConfigLoader;
 import org.madmeg.impl.gui.Gui;
@@ -45,6 +46,7 @@ public final class Core {
     public static Config CONFIG;
     public static Loader LOADER;
     public static TaskFactory TASK_FACTORY = new TaskFactory();
+    public static PluginLoader PLUGIN_LOADER;
 
     /**
      * @param args 1st index should contain path to config file
@@ -52,6 +54,8 @@ public final class Core {
     public static void main(final String[] args){
         Gui gui = new Gui();
         gui.render();
+        PLUGIN_LOADER = new PluginLoader();
+        Core.PLUGIN_LOADER.init();
     }
 
     public void oldLoading(){
