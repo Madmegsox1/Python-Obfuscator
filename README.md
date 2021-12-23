@@ -15,8 +15,8 @@
     <ol>
       <li>You will need java 15 installed</li>
       <li>Create a config file or download the one from <a href="https://github.com/2D-Mesh-Plane/Python-Obfscation/blob/master/assets/config.cfg">github</a></li>
-      <li>Open your command line of chose and run <code>java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'</code></li>
-      <li>The output file will be in the same director as the jar file</li>
+      <li>Open your command line of choice and run <code>java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'</code></li>
+      <li>The output file will be in the same directory as the jar file</li>
     </ol>
     <br/><br/>
     <h3>Example</h3>
@@ -101,7 +101,7 @@ encode_strings = true
 ```
 <div align="center">
     <h3>Recommendations</h3>
-    <p>Due to the method of obfuscation the obfuscator cannot yet tell if a name is a string or a var name so try not to use var names in strings!</p>
+    <p>Due to the method of obfuscation the obfuscator cannot yet tell if a name is a string or a var name, so try not to use var names in strings!</p>
     <p>
         Insert garbage is a bit buggy and can break code due to indenting issues so if you want to use insert garbage make sure to fix any indenting issues if they happen!
     </p>
