@@ -23,7 +23,7 @@ public final class PluginLoader extends ClassLoader<Plugin> {
 
         loadClasses();
 
-        Core.LOGGER.printSuccess("Loaded " + plugins.size() + " plugin");
+        Core.LOGGER.printSuccess("Loaded " + plugins.size() + " plugins");
     }
 
     private void loadClasses(){
