@@ -13,13 +13,17 @@ public final class PluginLoader extends ClassLoader<Plugin> {
 
     public PluginLoader(){
         super(Plugin.class);
+
         Core.LOGGER.printSuccess("Loading Plugins");
+
         plugins = new ArrayList<>();
         final File pluginDir = new File("plugins/");
         if (!pluginDir.exists()) pluginDir.mkdir();
         pluginsFiles = pluginDir.listFiles((dir, name) -> name.endsWith(".jar"));
+
         loadClasses();
-        Core.LOGGER.printSuccess("Loaded " + plugins.size() + " plugins");
+
+        Core.LOGGER.printSuccess("Loaded " + plugins.size() + " plugin");
     }
 
     private void loadClasses(){
