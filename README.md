@@ -105,6 +105,12 @@ encode_strings = true
     <p>
         Insert garbage is a bit buggy and can break code due to indenting issues so if you want to use insert garbage make sure to fix any indenting issues if they happen!
     </p>
+	<br/>
+    <h3>
+    How to make a plugin
+    </h3>
+	<p>To create a plugin use this <a href="https://github.com/2D-Mesh-Plane/Python-Obfuscator-Plugin">repo</a> as a template, then buid the file into a jar and drop it into the plugins folder
+	</p>
 </div>
 
 
