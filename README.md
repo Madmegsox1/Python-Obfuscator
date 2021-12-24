@@ -15,7 +15,7 @@
     <ol>
       <li>You will need java 15 installed.</li>
       <li>Create a config file or download the one from <a href="https://github.com/2D-Mesh-Plane/Python-Obfscation/blob/master/assets/config.cfg">github.</a></li>
-      <li>Open your command line of choice and run <code>java -jar 'THIS JAR NAME'.jar 'DIR TO CONFIG FILE'</code>.</li>
+      <li>Double click the jar file to open the gui</li>
       <li>The output file will be in the same directory as the jar file.</li>
     </ol>
     <br/><br/>
