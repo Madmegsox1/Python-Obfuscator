@@ -1,5 +1,6 @@
 package org.madmeg.impl.tasks;
 
+import org.madmeg.api.obfuscator.FindString;
 import org.madmeg.api.obfuscator.Mapper;
 import org.madmeg.api.obfuscator.RandomUtils;
 import org.madmeg.api.obfuscator.SplitFile;
@@ -81,9 +82,21 @@ public final class RenameFunction extends Mapper<RenameObject> implements Task {
                     i++;
                     continue;
                 }
+
+                final FindString findString = new FindString(line, false); // shit fix
+                boolean removedString = false;
+                if(findString.getFoundLine().contains(name.getOldName() + "()")){
+                    line = line.replace(findString.getFoundLine(), "[+|---|.]");
+                    removedString = true;
+                }
+
                 String[] oldLine = line.split("[(]");
                 line = oldLine[0];
                 line = line.replaceAll(name.getOldName(), name.getNewName() + "()" + ((oldLine[1].contains(":")) ?  ":" : ""));
+
+                if(removedString){
+                    line = line.replace("[+|---|.]", findString.getFoundLine());
+                }
                 map.put(i, line);
                 i++;
             }

@@ -1,5 +1,6 @@
 package org.madmeg.impl.tasks;
 
+import org.madmeg.api.obfuscator.FindString;
 import org.madmeg.api.obfuscator.Mapper;
 import org.madmeg.api.obfuscator.RandomUtils;
 import org.madmeg.api.obfuscator.SplitFile;
@@ -71,7 +72,19 @@ public final class RenameVars extends Mapper<RenameObject> implements Task {
         for (String line : lines) {
             for (RenameObject name : renameObjects) {
                 if (!line.contains(name.getOldName())) continue;
+
+                final FindString findString = new FindString(line, false); // shit fix
+                boolean removedString = false;
+                if(findString.getFoundLine().contains(name.getOldName())){
+                    line = line.replace(findString.getFoundLine(), "[+|---|.]");
+                    removedString = true;
+                }
+
                 line = line.replace(name.getOldName(), name.getNewName());
+
+                if(removedString){
+                    line = line.replace("[+|---|.]", findString.getFoundLine());
+                }
                 map.put(i, line);
             }
             i++;

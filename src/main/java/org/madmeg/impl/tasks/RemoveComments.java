@@ -1,5 +1,6 @@
 package org.madmeg.impl.tasks;
 
+import org.madmeg.api.obfuscator.FindString;
 import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.Task;
 
@@ -32,7 +33,17 @@ public final class RemoveComments implements Task {
                 i++;
                 continue;
             }
+            final FindString findString = new FindString(line, false); // shit fix
+            boolean removedString = false;
+            if(findString.getFoundLine().contains("#")){
+                line = line.replace(findString.getFoundLine(), "[+|---|.]");
+                removedString = true;
+            }
+
             line = line.split("#")[0];
+            if(removedString){
+                line = line.replace("[+|---|.]", findString.getFoundLine());
+            }
             newLines.put(i, line);
             i++;
         }

@@ -55,14 +55,13 @@ public final class ConfigLoader implements FileLoader {
                     case "insert_garbage" -> config.setInsertGarbage(isTrue(data[1]));
                     case "garbage_amount" -> config.setGarbageAmount(Integer.parseInt(data[1]));
                     case "garbage_length" -> config.setGarbageLength(Integer.parseInt(data[1]));
-                    case "insert_obfStrings" -> config.setInsertObfStrings(isTrue(data[1]));
-                    case "obfString_amount" -> config.setObfStringAmount(Integer.parseInt(data[1]));
                     case "remove_comments" -> config.setRemoveComments(isTrue(data[1]));
                     case "encode_imports" -> config.setEncodeImports(isTrue(data[1]));
                     case "encoded_list_garbage_length" -> config.setEncodedListGarbageLength(Integer.parseInt(data[1]));
                     case "encoder_type" -> config.setEncoderType(data[1]);
                     case "binary_splitter" -> config.setBinarySplitter(data[1]);
                     case "encode_strings" ->  config.setEncodeStrings(isTrue(data[1]));
+                    case "encode_code" -> config.setEncodeCode(isTrue(data[1]));
                     case "map_path" -> config.setMapPath(data[1]);
                 }
             }

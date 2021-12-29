@@ -21,7 +21,6 @@ public final class TaskFactory extends FactoryWorker<Task>{
 
     @Override
     public void poolTasks(){
-
         if(Core.CONFIG.isRemoveComments()){
             this.queueTask(new RemoveComments(Loader.FILE));
         }
@@ -37,15 +36,14 @@ public final class TaskFactory extends FactoryWorker<Task>{
         if(Core.CONFIG.isClassNames()){
             this.queueTask(new RenameClass(Loader.FILE));
         }
-
-        if(Core.CONFIG.isEncodeStrings()){
-
-        }
         if(Core.CONFIG.isInsertGarbage()){
             this.queueTask(new AddGarbage(Loader.FILE));
         }
-        if(Core.CONFIG.isInsertObfStrings()){
-
+        if(Core.CONFIG.isEncodeStrings()){
+            this.queueTask(new EncodeString(Loader.FILE));
+        }
+        if(Core.CONFIG.isEncodeCode()){
+            //this.queueTask(new EncodeCode(Loader.FILE));
         }
 
         // TODO add save obf file

@@ -18,7 +18,6 @@ public final class Config {
     private int garbageAmount;
     private int garbageLength;
     private boolean insertObfStrings;
-    private int obfStringAmount;
     private boolean removeComments;
 
 
@@ -27,6 +26,7 @@ public final class Config {
     private String encoderType;
     private String binarySplitter;
     private boolean encodeStrings;
+    private boolean encodeCode;
     private String mapPath;
 
     public Config(){}
@@ -133,14 +133,6 @@ public final class Config {
         this.garbageAmount = garbageAmount;
     }
 
-    public boolean isInsertObfStrings() {
-        return insertObfStrings;
-    }
-
-    public void setInsertObfStrings(boolean insertObfStrings) {
-        this.insertObfStrings = insertObfStrings;
-    }
-
     /**
      * @return the number of lines taken up by garbage {@link org.madmeg.impl.tasks.AddGarbage}
      */
@@ -153,14 +145,6 @@ public final class Config {
      */
     public void setGarbageLength(int garbageLength) {
         this.garbageLength = garbageLength;
-    }
-
-    public int getObfStringAmount() {
-        return obfStringAmount;
-    }
-
-    public void setObfStringAmount(int obfStringAmount) {
-        this.obfStringAmount = obfStringAmount;
     }
 
     /**
@@ -237,6 +221,14 @@ public final class Config {
 
     public void setEncodeStrings(boolean encodeStrings) {
         this.encodeStrings = encodeStrings;
+    }
+
+    public boolean isEncodeCode() {
+        return encodeCode;
+    }
+
+    public void setEncodeCode(boolean encodeCode) {
+        this.encodeCode = encodeCode;
     }
 
     public String getMapPath() {
