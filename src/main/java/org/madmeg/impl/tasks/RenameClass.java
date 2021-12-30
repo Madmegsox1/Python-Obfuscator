@@ -78,8 +78,8 @@ public final class RenameClass extends Mapper<RenameObject> implements Task {
 
                 final FindString findString = new FindString(line, false); // shit fix
                 boolean removedString = false;
-                if(findString.getFoundLine().contains(name.getOldName() + "()")){
-                    line = line.replace(findString.getFoundLine(), "[+|---|.]");
+                if(findString.getFoundLine() != null && findString.getFoundLine().get(0).contains(name.getOldName() + "()")){
+                    line = line.replace(findString.getFoundLine().get(0), "[+|---|.]");
                     removedString = true;
                 }
 
@@ -88,7 +88,7 @@ public final class RenameClass extends Mapper<RenameObject> implements Task {
                 line = line.replaceAll(name.getOldName(), name.getNewName() + "()" + ((oldLine[1].contains(":")) ?  ":" : ""));
 
                 if(removedString){
-                    line = line.replace("[+|---|.]", findString.getFoundLine());
+                    line = line.replace("[+|---|.]", findString.getFoundLine().get(0));
                 }
                 map.put(i, line);
                 i++;

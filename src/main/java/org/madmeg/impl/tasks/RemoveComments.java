@@ -35,14 +35,14 @@ public final class RemoveComments implements Task {
             }
             final FindString findString = new FindString(line, false); // shit fix
             boolean removedString = false;
-            if(findString.getFoundLine().contains("#")){
-                line = line.replace(findString.getFoundLine(), "[+|---|.]");
+            if(findString.getFoundLine() != null && findString.getFoundLine().get(0).contains("#")){
+                line = line.replace(findString.getFoundLine().get(0), "[+|---|.]");
                 removedString = true;
             }
 
             line = line.split("#")[0];
             if(removedString){
-                line = line.replace("[+|---|.]", findString.getFoundLine());
+                line = line.replace("[+|---|.]", findString.getFoundLine().get(0));
             }
             newLines.put(i, line);
             i++;

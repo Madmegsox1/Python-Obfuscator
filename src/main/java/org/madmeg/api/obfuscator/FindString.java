@@ -1,15 +1,18 @@
 package org.madmeg.api.obfuscator;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * @author Madmegsox1
  * @since 29/12/2021
  *
- * bunch of shit code but idk
+ * bunch of shit code, need to improve this as its very slow
  */
 
 public final class FindString {
     private final String line;
-    private String foundLine;
+    private ArrayList<String> foundLine;
     private int start;
     private final boolean keepChar;
 
@@ -20,28 +23,38 @@ public final class FindString {
         this.foundLine = find();
     }
 
-    private String find(){
-        if(!line.contains("\"") && !line.contains("'"))return "";
+    private ArrayList<String> find(){
+        if(!line.contains("\"") && !line.contains("'"))return null;
         boolean open = false;
         boolean open2 = false;
 
-        final StringBuilder toReturn = new StringBuilder();
+
+        ArrayList<String> strings = new ArrayList<>();
+
+
+        StringBuilder toReturn = new StringBuilder();
         for(int i = 0; i < line.length(); i++){
             final char val = line.charAt(i);
             if(val == '"' && !open2){
                 open = !open;
+                if(!open){
+                    if(keepChar) toReturn.append('"');
+                    strings.add(toReturn.toString());
+                    toReturn = new StringBuilder();
+                }
                 if(!keepChar) {
                     continue;
-                }else if(!open){
-                    toReturn.append('"');
                 }
             }
             if(val == '\'' && !open){
                 open2 = !open2;
+                if(!open2){
+                    if(keepChar) toReturn.append("'");
+                    strings.add(toReturn.toString());
+                    toReturn = new StringBuilder();
+                }
                 if(!keepChar) {
                     continue;
-                }else if(!open2){
-                    toReturn.append("'");
                 }
             }
 
@@ -52,10 +65,10 @@ public final class FindString {
                 toReturn.append(val);
             }
         }
-        return toReturn.toString();
+        return strings;
     }
 
-    public String getFoundLine() {
+    public ArrayList<String> getFoundLine() {
         return foundLine;
     }
 

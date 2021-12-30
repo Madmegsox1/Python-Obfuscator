@@ -75,15 +75,15 @@ public final class RenameVars extends Mapper<RenameObject> implements Task {
 
                 final FindString findString = new FindString(line, false); // shit fix
                 boolean removedString = false;
-                if(findString.getFoundLine().contains(name.getOldName())){
-                    line = line.replace(findString.getFoundLine(), "[+|---|.]");
+                if(findString.getFoundLine() != null && findString.getFoundLine().get(0).contains(name.getOldName())){
+                    line = line.replace(findString.getFoundLine().get(0), "[+|---|.]");
                     removedString = true;
                 }
 
                 line = line.replace(name.getOldName(), name.getNewName());
 
                 if(removedString){
-                    line = line.replace("[+|---|.]", findString.getFoundLine());
+                    line = line.replace("[+|---|.]", findString.getFoundLine().get(0));
                 }
                 map.put(i, line);
             }

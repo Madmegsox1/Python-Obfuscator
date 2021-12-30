@@ -24,6 +24,9 @@ public final class TaskFactory extends FactoryWorker<Task>{
         if(Core.CONFIG.isRemoveComments()){
             this.queueTask(new RemoveComments(Loader.FILE));
         }
+        if(Core.CONFIG.isEncodeStrings()){
+            this.queueTask(new EncodeString(Loader.FILE));
+        }
         if(Core.CONFIG.isEncodeImports()){
             this.queueTask(new EncodeImports(Loader.FILE));
         }
@@ -38,9 +41,6 @@ public final class TaskFactory extends FactoryWorker<Task>{
         }
         if(Core.CONFIG.isInsertGarbage()){
             this.queueTask(new AddGarbage(Loader.FILE));
-        }
-        if(Core.CONFIG.isEncodeStrings()){
-            this.queueTask(new EncodeString(Loader.FILE));
         }
         if(Core.CONFIG.isEncodeCode()){
             //this.queueTask(new EncodeCode(Loader.FILE));
