@@ -23,7 +23,7 @@ import java.io.File;
  * @author 0x0001
  * @author Madmegsox1
  * @since 09/12/2021
- * @version 1.1.0
+ * @version 1.1.1
  *
  *
  */

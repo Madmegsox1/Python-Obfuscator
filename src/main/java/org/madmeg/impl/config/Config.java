@@ -17,7 +17,6 @@ public final class Config {
     private boolean insertGarbage;
     private int garbageAmount;
     private int garbageLength;
-    private boolean insertObfStrings;
     private boolean removeComments;
 
 
@@ -26,6 +25,7 @@ public final class Config {
     private String encoderType;
     private String binarySplitter;
     private boolean encodeStrings;
+    private boolean encodeInts;
     private boolean encodeCode;
     private String mapPath;
 
@@ -203,7 +203,7 @@ public final class Config {
     }
 
     /**
-     * @return the char used to split blocks of binary in encoding {@link org.madmeg.impl.tasks.EncodeImports}
+     * @return the char used to split blocks of binary in encoding {@link org.madmeg.impl.tasks.EncodeImports}, {@link org.madmeg.impl.tasks.EncodeString}
      */
     public String getBinarySplitter() {
         return binarySplitter;
@@ -221,6 +221,14 @@ public final class Config {
 
     public void setEncodeStrings(boolean encodeStrings) {
         this.encodeStrings = encodeStrings;
+    }
+
+    public boolean isEncodeInts() {
+        return encodeInts;
+    }
+
+    public void setEncodeInts(boolean encodeInts) {
+        this.encodeInts = encodeInts;
     }
 
     public boolean isEncodeCode() {

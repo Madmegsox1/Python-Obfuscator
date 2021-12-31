@@ -62,6 +62,7 @@ public final class ConfigLoader implements FileLoader {
                     case "binary_splitter" -> config.setBinarySplitter(data[1]);
                     case "encode_strings" ->  config.setEncodeStrings(isTrue(data[1]));
                     case "encode_code" -> config.setEncodeCode(isTrue(data[1]));
+                    case "encode_ints" -> config.setEncodeInts(isTrue(data[1]));
                     case "map_path" -> config.setMapPath(data[1]);
                 }
             }

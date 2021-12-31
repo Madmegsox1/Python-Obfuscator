@@ -24,6 +24,9 @@ public final class TaskFactory extends FactoryWorker<Task>{
         if(Core.CONFIG.isRemoveComments()){
             this.queueTask(new RemoveComments(Loader.FILE));
         }
+        if(Core.CONFIG.isEncodeInts()){
+            this.queueTask(new EncodeInts(Loader.FILE));
+        }
         if(Core.CONFIG.isEncodeStrings()){
             this.queueTask(new EncodeString(Loader.FILE));
         }

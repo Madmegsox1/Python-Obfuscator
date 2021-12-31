@@ -1,7 +1,6 @@
 package org.madmeg.api.obfuscator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * @author Madmegsox1
@@ -29,7 +28,7 @@ public final class FindString {
         boolean open2 = false;
 
 
-        ArrayList<String> strings = new ArrayList<>();
+        final ArrayList<String> strings = new ArrayList<>();
 
 
         StringBuilder toReturn = new StringBuilder();
