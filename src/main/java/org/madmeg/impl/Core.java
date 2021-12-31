@@ -24,8 +24,6 @@ import java.io.File;
  * @author Madmegsox1
  * @since 09/12/2021
  * @version 1.1.1
- *
- *
  */
 
 public final class Core {

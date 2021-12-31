@@ -21,8 +21,8 @@ public final class Logger {
 
 
     public void printError(String text){
-        System.out.println("["+ prefix +"] " + text);
-        Gui.log("["+ prefix +"] " + text);
+        System.out.println("[ERROR] " + text);
+        Gui.log("[ERROR] " + text);
     }
 
     public void printSuccess(String text){

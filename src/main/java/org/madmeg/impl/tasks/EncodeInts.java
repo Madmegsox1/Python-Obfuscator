@@ -10,7 +10,7 @@ import java.util.*;
  * @since 31/12/2021
  */
 
-public class EncodeInts implements Task {
+public final class EncodeInts implements Task {
 
     private final ArrayList<String> lines;
 

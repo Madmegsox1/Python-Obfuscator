@@ -1,6 +1,7 @@
 package org.madmeg.impl.tasks;
 
 import org.madmeg.api.obfuscator.EncodingUtils;
+import org.madmeg.api.obfuscator.RandomUtils;
 import org.madmeg.api.obfuscator.SplitFile;
 import org.madmeg.api.obfuscator.tasks.Task;
 import org.madmeg.impl.Core;
@@ -22,27 +23,40 @@ public final class EncodeCode implements Task {
 
     @Override
     public void completeTask() {
-        StringBuilder encoded = new StringBuilder();
+         final StringBuilder toEncoded = new StringBuilder();
 
         for(String line : lines){
-            switch (Core.CONFIG.getEncoderType().toLowerCase()){
-                case "hex" -> {
-                    encoded.append(EncodingUtils.stringToHex(line).replaceFirst("^0*", ""));
-                }
-                case "base64" -> {
-                    encoded.append(EncodingUtils.stringToBase64(line));
-                }
-                case "bin" -> {
-                    encoded.append(EncodingUtils.prettyBinary(EncodingUtils.stringToBinary(line), 8, Core.CONFIG.getBinarySplitter()));
-                }
+            toEncoded.append(line).append("\n");
+        }
+        String encoded = "";
+        switch (Core.CONFIG.getEncoderType().toLowerCase()){
+            case "hex" -> {
+                Core.LOGGER.printError("Cannot encode code with hex. Please edit your config!");
+            }
+            case "base64" -> {
+                encoded = (EncodingUtils.stringToBase64(toEncoded.toString()));
+            }
+            case "bin" -> {
+                encoded = (EncodingUtils.prettyBinary(EncodingUtils.stringToBinary(toEncoded.toString()), 8, Core.CONFIG.getBinarySplitter()));
             }
         }
 
         lines.clear();
-        lines.add("test = " + '"' + encoded + '"');
+        final String name = RandomUtils.genRandomString(Core.CONFIG.getNameLength());
+        lines.add(name + " = " + '"' + encoded + '"');
         if(Core.CONFIG.getEncoderType().equals("base64")){
             lines.add("import base64");
         }
-        lines.add("exec(bytes.fromhex(test))");
+
+        final StringBuilder sb = new StringBuilder();
+        sb.append("exec(");
+        switch (Core.CONFIG.getEncoderType().toLowerCase()){
+            case "base64" -> sb.append("base64.b64decode(").append(name).append("))\n");
+            case "bin" -> sb.append("''.join(chr(int(").append(name).append(".replace('")
+                    .append(Core.CONFIG.getBinarySplitter()).append("', '')[i*0x0008:i*0x0008+0x0008],(0x0003 - 0x0001))) for i in range(len(")
+                    .append(name).append(".replace('")
+                    .append(Core.CONFIG.getBinarySplitter()).append("', ''))//(0x0004 + 0x0004))))\n");
+        }
+        lines.add(sb.toString());
     }
 }

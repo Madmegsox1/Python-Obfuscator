@@ -46,10 +46,9 @@ public final class TaskFactory extends FactoryWorker<Task>{
             this.queueTask(new AddGarbage(Loader.FILE));
         }
         if(Core.CONFIG.isEncodeCode()){
-            //this.queueTask(new EncodeCode(Loader.FILE));
+            this.queueTask(new EncodeCode(Loader.FILE));
         }
 
-        // TODO add save obf file
     }
 
 }

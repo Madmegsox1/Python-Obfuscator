@@ -17,6 +17,16 @@ public final class EncodingUtils {
         return String.format("%040x", new BigInteger(1, toConvert.getBytes(StandardCharsets.UTF_8)));
     }
 
+    public static String largeStringToHex(String toConvert){
+        final StringBuilder sb = new StringBuilder();
+        char[] ch = toConvert.toCharArray();
+        for (char c : ch) {
+            String hexString = Integer.toHexString(c);
+            sb.append(hexString);
+        }
+        return sb.toString();
+    }
+
     public static String stringToBase64(String toConvert){
         try {
             return Base64.getEncoder()
