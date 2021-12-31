@@ -75,28 +75,28 @@ remove_comments = true
 
 # Naming Settings
 name_length = 20
-name_prefix = w3
+    name_prefix = w3
 
 # Garbage Settings
 insert_garbage = false
     garbage_amount = 40
     garbage_length = 10
 
-# does noting atm
-insert_obfStrings = true 
-    obfString_amount = 5
 
 # Encoder Settings
-encode_imports = true
 encoded_list_garbage_length = 20
 encoder_type = bin
     binary_splitter = %
 # bin = binary
 # hex = hexadecimal
 # base64 = base64
-
-# does noting atm
 encode_strings = true
+encode_imports = true
+encode_ints = true
+encode_code = false
+
+
+map_path = assets
 ```
 <div align="center">
     <h3>Recommendations</h3>
