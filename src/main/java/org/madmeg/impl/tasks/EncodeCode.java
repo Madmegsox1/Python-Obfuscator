@@ -32,6 +32,7 @@ public final class EncodeCode implements Task {
         switch (Core.CONFIG.getEncoderType().toLowerCase()){
             case "hex" -> {
                 Core.LOGGER.printError("Cannot encode code with hex. Please edit your config!");
+                return;
             }
             case "base64" -> {
                 encoded = (EncodingUtils.stringToBase64(toEncoded.toString()));
