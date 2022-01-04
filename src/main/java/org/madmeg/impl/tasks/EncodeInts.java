@@ -17,7 +17,13 @@ public final class EncodeInts implements Task {
     public EncodeInts(SplitFile file){
         this.lines = file.lines;
     }
-
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     iterates through each line and looks for ints, The obfuscator then encodes the ints into hex, it will then replace
+     *     the string with the encoded string
+     * </p>
+     */
     @Override
     public void completeTask() {
         Map<Integer, String> renameMap = new HashMap<>();

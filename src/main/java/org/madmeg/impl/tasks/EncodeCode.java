@@ -20,7 +20,14 @@ public final class EncodeCode implements Task {
     public EncodeCode(SplitFile file){
         this.lines = file.lines;
     }
-
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     The obfuscator will create a string for the file it then will encode the hole file into base64 or bin,
+     *     it cannot encode into hex if you use any other encoding types the encodes imports ect. The obfuscator then
+     *     replaces every line with this encoded string. It then does {@code exec("encoded string")}
+     * </p>
+     */
     @Override
     public void completeTask() {
          final StringBuilder toEncoded = new StringBuilder();

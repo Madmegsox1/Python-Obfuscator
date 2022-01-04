@@ -25,6 +25,13 @@ public final class EncodeString implements Task {
         this.lines = file.lines;
     }
 
+    /**
+     * <h2>How it works</h2>
+     * <p>
+     *     iterates through each line and looks for strings, The obfuscator then encodes the string into hex, bin or
+     *     base64 depending on the config, it will then replace the string with the encoded string
+     * </p>
+     */
     @Override
     public void completeTask() {
         int i = 0;
