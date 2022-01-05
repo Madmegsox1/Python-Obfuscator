@@ -16,15 +16,8 @@ public final class TaskFactory extends FactoryWorker<Task>{
         while (tasks.size() > 0){
             tasks.remove().completeTask();
         }
-        //Loader.FILE.lines.spliterator().forEachRemaining(System.out::println);
     }
-    /**
-     * <h2>How it works</h2>
-     * <p>
-     *     iterates through each line and looks for ints, The obfuscator will then generate the hex value for the int.
-     *     Finally it the int will be replaced by the encoded int
-     * </p>
-     */
+
     @Override
     public void poolTasks(){
         if(Core.CONFIG.isRemoveComments()){
